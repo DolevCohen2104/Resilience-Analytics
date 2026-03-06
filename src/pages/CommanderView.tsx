@@ -10,6 +10,7 @@ import {
 import StatCard from '../components/StatCard';
 import InfoTip from '../components/InfoTip';
 import RadarChart from '../components/RadarChart';
+import RadarBreakdown from '../components/RadarBreakdown';
 import { cadets, sectorLabels, riskLabels, componentLabels } from '../data/mockData';
 import { useChartTheme } from '../useChartTheme';
 
@@ -94,6 +95,7 @@ const CommanderView: React.FC = () => {
             <InfoTip text={"איך לקרוא: ממוצע היחידה בכל מרכיב חוסן. כל קודקוד = מרכיב (0-100).\n\nכחול = נוכחי, מקווקו = בסיס.\n\nדוגמה: 'פיזי' ב-80 מול בסיס 65 = שיפור משמעותי של 23% במרכיב הפיזי.\n\nקודקוד ששקוע פנימה = מרכיב שדורש חיזוק ברמת היחידה."} />
           </div>
           <RadarChart data={unitRadar} size="large" />
+          <RadarBreakdown data={unitRadar} />
         </div>
       </div>
 

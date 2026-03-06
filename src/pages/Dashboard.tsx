@@ -11,6 +11,7 @@ import {
 import StatCard from '../components/StatCard';
 import InfoTip from '../components/InfoTip';
 import RadarChart from '../components/RadarChart';
+import RadarBreakdown from '../components/RadarBreakdown';
 import { useChartTheme } from '../useChartTheme';
 import {
   cadets, sessionTrendData, activityFeed, sectorLabels, riskLabels, componentLabels
@@ -176,6 +177,7 @@ const Dashboard: React.FC = () => {
               <InfoTip text={"איך לקרוא: כל קודקוד מייצג מרכיב חוסן (ערכי, רגשי, קוגניטיבי, חברתי, פיזי). ככל שהנקודה רחוקה יותר מהמרכז - הציון גבוה יותר (0-100).\n\nכחול מלא = ציון נוכחי, קו מקווקו = קו בסיס.\n\nדוגמה: אם הקודקוד \"רגשי\" נמצא ב-72 (כחול) ובבסיס היה 58 (מקווקו), חל שיפור של 14 נקודות במרכיב הרגשי.\n\nצורה מאוזנת = חוסן אחיד, צורה לא סימטרית = יש מרכיב חלש שדורש חיזוק."} />
             </div>
             <RadarChart data={unitAvgComponents} />
+            <RadarBreakdown data={unitAvgComponents} />
           </div>
 
           {/* Activity Feed */}

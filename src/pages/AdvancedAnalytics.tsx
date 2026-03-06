@@ -147,6 +147,95 @@ const AdvancedAnalytics: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
+          {/* Component Data Sources */}
+          <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>מה נמדד בכל מרכיב?</h2>
+              <InfoTip text={"פירוט המדדים והחיישנים המשמשים לקביעת הציון בכל אחד מחמשת מרכיבי החוסן. המדדים נאספים אוטומטית מהחיישנים הביומטריים ומניתוח הביצועים בסימולציה."} />
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+              {[
+                {
+                  name: 'ערכי',
+                  color: '#38BDF8',
+                  icon: 'מצפן',
+                  data: [
+                    'עקביות בהחלטות מוסריות תחת לחץ (ניתוח עץ החלטות)',
+                    'התמדה במשימה למרות קושי (זמן עד נטישה / התמדה)',
+                    'שמירה על קוד התנהגות גם בתנאי אי-ודאות',
+                    'דירוג עמיתים - האם הצוער פעל לפי ערכים משותפים',
+                  ],
+                  example: 'דוגמה: צוער שנשאר במשימה 14 דקות מתוך 18 למרות לחץ כבד = ציון התמדה 78%',
+                },
+                {
+                  name: 'רגשי',
+                  color: '#FF4D6A',
+                  icon: 'לב',
+                  data: [
+                    'שונות קצב לב (HRV) - מדד לוויסות אוטונומי',
+                    'תגובה גלוונית של העור (GSR) - עוררות רגשית',
+                    'יחס זמן בוויסות עצמי מול זמן בתגובת לחץ',
+                    'מהירות חזרה לקו בסיס רגשי לאחר טריגר',
+                  ],
+                  example: 'דוגמה: HRV ממוצע 62ms (תקין) + GSR חזרה לבסיס תוך 45 שניות = ויסות רגשי 72',
+                },
+                {
+                  name: 'קוגניטיבי',
+                  color: '#A78BFA',
+                  icon: 'מוח',
+                  data: [
+                    'זמן תגובה להחלטות (Reaction Time) - מהירות עיבוד',
+                    'מעקב עיניים (Eye Tracking) - דפוסי סריקה ומיקוד',
+                    'דיוק בזיהוי איומים ומטרות (Hit Rate)',
+                    'יכולת ריבוי משימות - ביצוע מקבילי תחת עומס',
+                  ],
+                  example: 'דוגמה: זמן תגובה ממוצע 380ms + דיוק זיהוי 89% = ציון קוגניטיבי 75',
+                },
+                {
+                  name: 'חברתי',
+                  color: '#00E5A0',
+                  icon: 'צוות',
+                  data: [
+                    'תקשורת בצוות - תדירות ואיכות העברת מידע',
+                    'יוזמות מנהיגות - מספר פעמים שהצוער הוביל',
+                    'תמיכה בעמיתים - סיוע לחברי צוות בקושי',
+                    'תיאום פעולה - סנכרון עם פעולות הצוות',
+                  ],
+                  example: 'דוגמה: 7 הודעות תקשורת + 3 יוזמות מנהיגות + 2 סיועים = ציון חברתי 70',
+                },
+                {
+                  name: 'פיזי',
+                  color: '#FFB547',
+                  icon: 'גוף',
+                  data: [
+                    'קצב לב (HR) - עומס פיזיולוגי ורמת מאמץ',
+                    'HRV במנוחה לעומת פעילות - כושר התאוששות',
+                    'יציבות מוטורית - דיוק בתנועות ופעולות פיזיות',
+                    'עמידות לעייפות - שמירה על ביצועים לאורך זמן',
+                  ],
+                  example: 'דוגמה: HR ממוצע 95bpm (תקין לפעילות) + דיוק מוטורי 85% + ירידת ביצועים 8% בלבד = ציון פיזי 80',
+                },
+              ].map(comp => (
+                <div key={comp.name} className="p-4 rounded-xl" style={{ backgroundColor: 'var(--bg)', border: `1px solid ${comp.color}20` }}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold" style={{ backgroundColor: `${comp.color}15`, color: comp.color }}>
+                      {comp.icon}
+                    </div>
+                    <h3 className="text-base font-bold" style={{ color: comp.color }}>{comp.name}</h3>
+                  </div>
+                  <ul className="space-y-1.5 mb-3" style={{ paddingRight: '1rem' }}>
+                    {comp.data.map((d, i) => (
+                      <li key={i} className="text-sm leading-relaxed list-disc" style={{ color: 'var(--text-secondary)' }}>{d}</li>
+                    ))}
+                  </ul>
+                  <p className="text-sm font-medium p-2.5 rounded-lg" style={{ backgroundColor: `${comp.color}08`, color: comp.color }}>
+                    {comp.example}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Heatmap */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">

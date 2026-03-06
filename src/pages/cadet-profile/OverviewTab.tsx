@@ -4,6 +4,7 @@ import {
 } from 'recharts';
 import { RiHeartPulseLine, RiDropLine, RiEyeLine, RiTimerLine, RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri';
 import RadarChart from '../../components/RadarChart';
+import RadarBreakdown from '../../components/RadarBreakdown';
 import InfoTip from '../../components/InfoTip';
 import { Cadet, cadetSessionHistory, componentLabels, timelineEvents } from '../../data/mockData';
 
@@ -70,6 +71,7 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
           <InfoTip text={"איך לקרוא: כל קודקוד = מרכיב חוסן (ערכי, רגשי, קוגניטיבי, חברתי, פיזי). המרחק מהמרכז = הציון (0-100).\n\nכחול = נוכחי, מקווקו = בסיס.\n\nדוגמה: קודקוד 'רגשי' ב-72 (כחול) מול 58 (בסיס) = שיפור של 14 נקודות.\n\nצורה עגולה ומאוזנת = חוסן אחיד. שקע חד = מרכיב חלש שדורש חיזוק."} />
         </div>
         <RadarChart data={radarData} size="large" />
+        <RadarBreakdown data={radarData} />
       </div>
 
       {/* Timeline */}
