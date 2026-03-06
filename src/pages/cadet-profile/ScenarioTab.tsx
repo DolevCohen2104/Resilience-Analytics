@@ -4,6 +4,7 @@ import {
 } from 'recharts';
 import { RiArrowUpSLine, RiArrowRightSLine, RiEyeLine } from 'react-icons/ri';
 import { useChartTheme } from '../../useChartTheme';
+import InfoTip from '../../components/InfoTip';
 import { scenarioBreakdown } from '../../data/mockData';
 
 const ScenarioTab: React.FC = () => {
@@ -27,7 +28,10 @@ const ScenarioTab: React.FC = () => {
     <div className="space-y-6">
       {/* Scenario Table */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-4">ביצועים לפי תרחיש</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <h2 className="text-lg font-semibold">ביצועים לפי תרחיש</h2>
+          <InfoTip text="טבלת ביצועי צוער בתרחישים שונים. לחיצה על תרחיש תציג פירוט מלא" />
+        </div>
         <table className="w-full text-right">
           <thead>
             <tr style={{ backgroundColor: 'var(--hover)' }}>
@@ -86,7 +90,10 @@ const ScenarioTab: React.FC = () => {
 
       {/* Bubble Chart */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-4">מפת קושי-ביצועים</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <h2 className="text-lg font-semibold">מפת קושי-ביצועים</h2>
+          <InfoTip text="טבלת ביצועי צוער בתרחישים שונים. לחיצה על תרחיש תציג פירוט מלא" />
+        </div>
         <ResponsiveContainer width="100%" height={320}>
           <ScatterChart>
             <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
@@ -123,9 +130,12 @@ const ScenarioTab: React.FC = () => {
       {/* Drill-down Panel */}
       {selectedScenario && (
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'rgba(56,189,248,0.3)' }}>
-          <h2 className="text-lg font-semibold mb-4 text-idf-blue">
-            {scenarioBreakdown.find(s => s.name === selectedScenario)?.nameHe} - פירוט
-          </h2>
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-semibold text-idf-blue">
+              {scenarioBreakdown.find(s => s.name === selectedScenario)?.nameHe} - פירוט
+            </h2>
+            <InfoTip text="טבלת ביצועי צוער בתרחישים שונים. לחיצה על תרחיש תציג פירוט מלא" />
+          </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--bg)' }}>
               <h3 className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>נקודות החלטה</h3>

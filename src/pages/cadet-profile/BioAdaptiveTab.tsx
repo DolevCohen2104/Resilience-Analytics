@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { RiHeartPulseLine, RiDropLine, RiEyeLine, RiTimerLine } from 'react-icons/ri';
 import { useChartTheme } from '../../useChartTheme';
+import InfoTip from '../../components/InfoTip';
 import { Cadet, cadetSessionHistory, reactionByType } from '../../data/mockData';
 
 interface Props { cadet: Cadet; }
@@ -39,6 +40,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiHeartPulseLine className="text-idf-blue text-lg" />
           <h2 className="text-lg font-semibold">שונות דופק - HRV</h2>
+          <InfoTip text="שונות קצב לב (HRV) - מדד לוויסות מערכת העצבים האוטונומית. ערך גבוה מעיד על גמישות פיזיולוגית" />
         </div>
         <ResponsiveContainer width="100%" height={220}>
           <AreaChart data={cadetSessionHistory}>
@@ -70,6 +72,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiDropLine className="text-idf-red text-lg" />
           <h2 className="text-lg font-semibold">מוליכות עור - GSR</h2>
+          <InfoTip text="תגובה גלוונית של העור - מדד לעוררות רגשית ולחץ. ערכים גבוהים מעידים על לחץ מוגבר" />
         </div>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={cadetSessionHistory}>
@@ -102,6 +105,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiEyeLine className="text-idf-green text-lg" />
           <h2 className="text-lg font-semibold">מעקב עיניים</h2>
+          <InfoTip text="מעקב עיניים - מדד לריכוז, קשב ועיבוד מידע קוגניטיבי" />
         </div>
         <div className="grid grid-cols-2 gap-6">
           <div>
@@ -147,6 +151,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiTimerLine className="text-idf-purple text-lg" />
           <h2 className="text-lg font-semibold">זמן תגובה קוגניטיבי</h2>
+          <InfoTip text="זמן תגובה - מהירות עיבוד מידע וקבלת החלטות תחת לחץ" />
         </div>
         <div className="grid grid-cols-2 gap-6">
           <div>

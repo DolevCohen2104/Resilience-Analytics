@@ -7,6 +7,7 @@ import { RiFilter3Line } from 'react-icons/ri';
 import { cadets, triggers, componentLabels, heatmapData, sectorLabels } from '../data/mockData';
 import type { Sector } from '../data/mockData';
 import { useChartTheme } from '../useChartTheme';
+import InfoTip from '../components/InfoTip';
 
 const tabs = [
   { id: 'cohort', label: 'השוואת עוצמות' },
@@ -85,7 +86,10 @@ const AdvancedAnalytics: React.FC = () => {
           </div>
 
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4">השוואת עוצמות - ציון חוסן vs זמן התאוששות</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold">השוואת עוצמות - ציון חוסן vs זמן התאוששות</h2>
+              <InfoTip text="ניתוח קבוצתי - פיזור צוערים לפי ציון חוסן וזמן התאוששות. כל נקודה מייצגת צוער" />
+            </div>
             <ResponsiveContainer width="100%" height={400}>
               <ScatterChart>
                 <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
@@ -126,7 +130,10 @@ const AdvancedAnalytics: React.FC = () => {
       {activeTab === 'components' && (
         <div className="space-y-6">
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4">השוואת בסיס מול נוכחי - חמישה מרכיבים</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold">השוואת בסיס מול נוכחי - חמישה מרכיבים</h2>
+              <InfoTip text="מפת חום המציגה את ביצועי הצוערים לפי מרכיבי חוסן ויכולות. צבע כהה = ציון גבוה" />
+            </div>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={componentComparisonData}>
                 <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
@@ -142,7 +149,10 @@ const AdvancedAnalytics: React.FC = () => {
 
           {/* Heatmap */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4">מפת חום - ביצועים לאורך מפגשים</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold">מפת חום - ביצועים לאורך מפגשים</h2>
+              <InfoTip text="מפת חום המציגה את ביצועי הצוערים לפי מרכיבי חוסן ויכולות. צבע כהה = ציון גבוה" />
+            </div>
             <div className="overflow-x-auto">
               <table className="w-full text-right">
                 <thead>
@@ -199,7 +209,10 @@ const AdvancedAnalytics: React.FC = () => {
       {activeTab === 'triggers' && (
         <div className="space-y-6">
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4">טריגרים נפוצים ביותר</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold">טריגרים נפוצים ביותר</h2>
+              <InfoTip text="ניתוח טריגרים - זיהוי הגורמים המשפיעים ביותר על ביצועי החוסן" />
+            </div>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={triggers} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
@@ -217,7 +230,10 @@ const AdvancedAnalytics: React.FC = () => {
 
           {/* Sankey-like Collapse Pathway */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4">מסלול קריסה - מטריגר לתוצאה</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold">מסלול קריסה - מטריגר לתוצאה</h2>
+              <InfoTip text="ניתוח טריגרים - זיהוי הגורמים המשפיעים ביותר על ביצועי החוסן" />
+            </div>
             <div className="grid grid-cols-3 gap-8">
               <div>
                 <h3 className="text-sm font-semibold mb-3 text-center" style={{ color: 'var(--text-secondary)' }}>טריגר</h3>
@@ -245,7 +261,10 @@ const AdvancedAnalytics: React.FC = () => {
       {/* Three-Capability Comparison */}
       {activeTab === 'capabilities' && (
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-          <h2 className="text-lg font-semibold mb-4">שלושת הכושרים לאורך זמן - ממוצע יחידה</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-semibold">שלושת הכושרים לאורך זמן - ממוצע יחידה</h2>
+            <InfoTip text="השוואת יכולות (עמידה, התאוששות, הסתגלות) ברמת היחידה" />
+          </div>
           <ResponsiveContainer width="100%" height={350}>
             <AreaChart data={capabilityTrendData}>
               <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
@@ -305,7 +324,10 @@ const AdvancedAnalytics: React.FC = () => {
           </div>
 
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4">מסלול חזוי - הקרנת מגמה</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold">מסלול חזוי - הקרנת מגמה</h2>
+              <InfoTip text="מודל חיזוי המבוסס על נתונים היסטוריים לזיהוי מגמות עתידיות" />
+            </div>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={[
                 ...capabilityTrendData,

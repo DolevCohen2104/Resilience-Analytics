@@ -4,6 +4,7 @@ import {
   ResponsiveContainer, ReferenceArea
 } from 'recharts';
 import { useChartTheme } from '../../useChartTheme';
+import InfoTip from '../../components/InfoTip';
 import { Cadet, cadetSessionHistory } from '../../data/mockData';
 
 interface Props { cadet: Cadet; }
@@ -84,7 +85,10 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
 
       {/* Withstanding Chart */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-1">עמידה - יציבות ביצוע תחת לחץ</h2>
+        <div className="flex items-center gap-2 mb-1">
+          <h2 className="text-lg font-semibold">עמידה - יציבות ביצוע תחת לחץ</h2>
+          <InfoTip text="יכולת עמידה - היכולת לשמור על תפקוד תחת לחץ ואי-ודאות" />
+        </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>% הזמן שמירה על תפקוד אפקטיבי בשיא הלחץ</p>
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={withstandingData}>
@@ -103,7 +107,10 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
 
       {/* Recovery Chart */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-1">התאוששות - זמן חזרה לתפקוד</h2>
+        <div className="flex items-center gap-2 mb-1">
+          <h2 className="text-lg font-semibold">התאוששות - זמן חזרה לתפקוד</h2>
+          <InfoTip text="יכולת התאוששות - מהירות החזרה לתפקוד מיטבי לאחר אירוע לחץ" />
+        </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>מגמה יורדת = שיפור</p>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={recoveryData}>
@@ -130,7 +137,10 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
 
       {/* Adaptation Chart */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-1">הסתגלות - תגובה לשינויים באמצע משימה</h2>
+        <div className="flex items-center gap-2 mb-1">
+          <h2 className="text-lg font-semibold">הסתגלות - תגובה לשינויים באמצע משימה</h2>
+          <InfoTip text="יכולת הסתגלות - היכולת ללמוד ולהשתפר מניסיון קודם" />
+        </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>ציון הסתגלות כאשר פרמטרי התרחיש משתנים באופן בלתי צפוי</p>
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={adaptationData}>

@@ -4,6 +4,7 @@ import {
   RiServerLine, RiSettings4Line
 } from 'react-icons/ri';
 import { thresholdSettings, sensorStatus, roles } from '../data/mockData';
+import InfoTip from '../components/InfoTip';
 
 const settingsTabs = [
   { id: 'sensors', label: 'כיול חיישנים' },
@@ -88,7 +89,10 @@ const SystemSettings: React.FC = () => {
       {/* Alert Thresholds */}
       {activeTab === 'thresholds' && (
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-          <h2 className="text-lg font-semibold mb-4">הגדרת ספי התראות</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-semibold">הגדרת ספי התראות</h2>
+            <InfoTip text="הגדרת ספי התראה - קביעת ערכי סף להתראות אוטומטיות על מצב חוסן" />
+          </div>
           <table className="w-full text-right">
             <thead>
               <tr style={{ backgroundColor: 'var(--hover)' }}>
@@ -150,6 +154,7 @@ const SystemSettings: React.FC = () => {
           <div className="flex items-center gap-2 mb-4">
             <RiShieldUserLine className="text-idf-purple text-lg" />
             <h2 className="text-lg font-semibold">מטריצת הרשאות (RBAC)</h2>
+            <InfoTip text="ניהול הרשאות - הגדרת תפקידים ורמות גישה למשתמשי המערכת" />
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-right">

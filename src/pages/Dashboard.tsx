@@ -9,6 +9,7 @@ import {
   RiArrowUpSLine, RiArrowDownSLine, RiArrowRightSLine,
 } from 'react-icons/ri';
 import StatCard from '../components/StatCard';
+import InfoTip from '../components/InfoTip';
 import RadarChart from '../components/RadarChart';
 import { useChartTheme } from '../useChartTheme';
 import {
@@ -78,7 +79,10 @@ const Dashboard: React.FC = () => {
           {/* Trend Chart */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>מגמת חוסן לאורך זמן</h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>מגמת חוסן לאורך זמן</h2>
+                <InfoTip text="גרף מגמה המציג את התפתחות ציוני החוסן לאורך זמן עבור כל זרוע (קרבי, מטכ״לי, מוסדי). ניתן לסנן לפי טווח זמן." />
+              </div>
               <div className="flex gap-1">
                 {(['week', 'month', 'quarter', 'all'] as const).map(range => (
                   <button
@@ -114,7 +118,10 @@ const Dashboard: React.FC = () => {
           {/* At Risk Table */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>צוערים הדורשים תשומת לב</h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>צוערים הדורשים תשומת לב</h2>
+                <InfoTip text="טבלת צוערים בסיכון גבוה או במגמת ירידה. לחיצה על שורה תפתח את פרופיל הצוער המלא." />
+              </div>
               <span className="text-sm" style={{ color: 'var(--text-dim)' }}>{atRiskCadets.length} צוערים</span>
             </div>
             <div className="overflow-x-auto">
@@ -164,13 +171,19 @@ const Dashboard: React.FC = () => {
         <div className="col-span-2 space-y-6">
           {/* Radar Chart */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>רדאר חמישה מרכיבים - ממוצע יחידה</h2>
+            <div className="flex items-center gap-2 mb-2">
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>רדאר חמישה מרכיבים - ממוצע יחידה</h2>
+              <InfoTip text="תרשים רדאר המציג את ממוצע היחידה בחמשת מרכיבי החוסן: ערכי, רגשי, קוגניטיבי, חברתי ופיזי. הקו המקווקו מייצג את קו הבסיס." />
+            </div>
             <RadarChart data={unitAvgComponents} />
           </div>
 
           {/* Activity Feed */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
-            <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>פעילות אחרונה</h2>
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>פעילות אחרונה</h2>
+              <InfoTip text="פיד אירועים אחרונים: סימולציות, טריגרים, אבני דרך והערכות. לחיצה על אירוע תפתח את פרופיל הצוער הרלוונטי." />
+            </div>
             <div className="space-y-3 max-h-[340px] overflow-y-auto">
               {activityFeed.map(event => (
                 <div

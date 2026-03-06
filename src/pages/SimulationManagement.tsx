@@ -5,6 +5,7 @@ import {
   RiGitBranchLine, RiSignalTowerLine
 } from 'react-icons/ri';
 import { scenarios, sectorLabels } from '../data/mockData';
+import InfoTip from '../components/InfoTip';
 import type { Sector } from '../data/mockData';
 
 const SimulationManagement: React.FC = () => {
@@ -132,7 +133,10 @@ const SimulationManagement: React.FC = () => {
 
       {activeSection === 'tree' && (
         <div className="rounded-[14px] p-6" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-          <h2 className="text-lg font-semibold mb-6">עורך עץ החלטות - היתקלות בשטח בנוי</h2>
+          <div className="flex items-center gap-2 mb-6">
+            <h2 className="text-lg font-semibold">עורך עץ החלטות - היתקלות בשטח בנוי</h2>
+            <InfoTip text="עץ החלטות המציג את נקודות ההחלטה והתוצאות האפשריות בכל תרחיש" />
+          </div>
 
           {/* Decision Tree Visualization */}
           <div className="relative min-h-[400px]">
@@ -211,7 +215,10 @@ const SimulationManagement: React.FC = () => {
           {/* Simulation Viewport */}
           <div className="col-span-3 rounded-[14px] p-4" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-base font-semibold">שידור חי - היתקלות בשטח בנוי</h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-base font-semibold">שידור חי - היתקלות בשטח בנוי</h2>
+                <InfoTip text="ניטור סימולציה בזמן אמת - מעקב אחר מדדים ביומטריים וביצועים" />
+              </div>
               <div className="flex items-center gap-2">
                 <div className="glow-dot bg-idf-green shadow-[0_0_8px_rgba(0,229,160,0.5)]" />
                 <span className="text-xs text-idf-green font-medium">LIVE</span>

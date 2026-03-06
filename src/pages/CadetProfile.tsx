@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { RiPlayCircleLine, RiDownloadLine, RiEditLine } from 'react-icons/ri';
 import { cadets, sectorLabels } from '../data/mockData';
+import InfoTip from '../components/InfoTip';
 import OverviewTab from './cadet-profile/OverviewTab';
 import BioAdaptiveTab from './cadet-profile/BioAdaptiveTab';
 import ScenarioTab from './cadet-profile/ScenarioTab';
@@ -55,6 +56,7 @@ const CadetProfile: React.FC = () => {
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <h1 className="text-2xl font-bold">{cadet.id}</h1>
+                <InfoTip text="פרופיל צוער מלא הכולל ציון חוסן, מגמה, ומידע ביומטרי. נתונים מתעדכנים בזמן אמת." />
                 <span className="text-base font-mono" style={{ color: 'var(--text-dim)' }}>{cadet.alias}</span>
                 <span className={`badge badge-${cadet.sector}`}>{sectorLabels[cadet.sector]}</span>
                 <span className={`badge ${

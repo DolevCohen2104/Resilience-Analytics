@@ -4,6 +4,7 @@ import {
 } from 'recharts';
 import { RiHeartPulseLine, RiDropLine, RiEyeLine, RiTimerLine, RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri';
 import RadarChart from '../../components/RadarChart';
+import InfoTip from '../../components/InfoTip';
 import { Cadet, cadetSessionHistory, componentLabels, timelineEvents } from '../../data/mockData';
 
 interface Props { cadet: Cadet; }
@@ -64,13 +65,19 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
 
       {/* Radar Chart */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-2">רדאר חמישה מרכיבי חוסן</h2>
+        <div className="flex items-center gap-2 mb-2">
+          <h2 className="text-lg font-semibold">רדאר חמישה מרכיבי חוסן</h2>
+          <InfoTip text="תרשים רדאר המציג את חמשת מרכיבי החוסן: ערכי, רגשי, קוגניטיבי, חברתי ופיזי" />
+        </div>
         <RadarChart data={radarData} size="large" />
       </div>
 
       {/* Timeline */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-6">ציר זמן - אבני דרך</h2>
+        <div className="flex items-center gap-2 mb-6">
+          <h2 className="text-lg font-semibold">ציר זמן - אבני דרך</h2>
+          <InfoTip text="ציר זמן של אירועים ואבני דרך משמעותיים" />
+        </div>
         <div className="relative">
           <div className="absolute top-4 right-4 left-4 h-0.5" style={{ backgroundColor: 'var(--border)' }} />
           <div className="flex justify-between relative">

@@ -8,6 +8,7 @@ import {
   RiCalendarLine, RiDownloadLine, RiArrowUpSLine, RiArrowDownSLine, RiArrowRightSLine, RiSearchLine
 } from 'react-icons/ri';
 import StatCard from '../components/StatCard';
+import InfoTip from '../components/InfoTip';
 import RadarChart from '../components/RadarChart';
 import { cadets, sectorLabels, riskLabels, componentLabels } from '../data/mockData';
 import { useChartTheme } from '../useChartTheme';
@@ -67,7 +68,10 @@ const CommanderView: React.FC = () => {
       <div className="grid grid-cols-2 gap-6 mb-6">
         {/* Resilience Distribution */}
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-          <h2 className="text-lg font-semibold mb-4">התפלגות חוסן לפי יחידת משנה</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-lg font-semibold">התפלגות חוסן לפי יחידת משנה</h2>
+            <InfoTip text="התפלגות ציוני חוסן ביחידה - מראה את פיזור הצוערים לפי רמות ביצוע" />
+          </div>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={distributionData}>
               <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
@@ -85,7 +89,10 @@ const CommanderView: React.FC = () => {
 
         {/* Unit Radar */}
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-          <h2 className="text-lg font-semibold mb-2">רדאר חמישה מרכיבים - ממוצע יחידה</h2>
+          <div className="flex items-center gap-2 mb-2">
+            <h2 className="text-lg font-semibold">רדאר חמישה מרכיבים - ממוצע יחידה</h2>
+            <InfoTip text="מדדי ביצוע מפתח ברמת היחידה - סיכום מצב חוסן כולל" />
+          </div>
           <RadarChart data={unitRadar} size="large" />
         </div>
       </div>
@@ -93,7 +100,10 @@ const CommanderView: React.FC = () => {
       {/* Readiness Report Table */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">דוח מוכנות</h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-semibold">דוח מוכנות</h2>
+            <InfoTip text="טבלת מוכנות - מצב כלל הצוערים ורמת המוכנות של כל אחד" />
+          </div>
           <div className="flex items-center gap-3">
             <div className="relative">
               <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-base" style={{ color: 'var(--text-dim)' }} />

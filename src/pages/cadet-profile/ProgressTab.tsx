@@ -5,6 +5,7 @@ import {
 } from 'recharts';
 import { RiArrowUpSLine, RiArrowDownSLine } from 'react-icons/ri';
 import { useChartTheme } from '../../useChartTheme';
+import InfoTip from '../../components/InfoTip';
 import { Cadet, cadetSessionHistory } from '../../data/mockData';
 
 interface Props { cadet: Cadet; }
@@ -43,7 +44,10 @@ const ProgressTab: React.FC<Props> = ({ cadet }) => {
     <div className="space-y-6">
       {/* Resilience Trajectory */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-1">מסלול חוסן</h2>
+        <div className="flex items-center gap-2 mb-1">
+          <h2 className="text-lg font-semibold">מסלול חוסן</h2>
+          <InfoTip text="מעקב התקדמות הצוער לאורך זמן, השוואה לקו בסיס וצפי מגמה" />
+        </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>זמן התאוששות (ירידה = שיפור) + כושר תפקודי (עלייה = שיפור)</p>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={trajectoryData}>
@@ -98,7 +102,10 @@ const ProgressTab: React.FC<Props> = ({ cadet }) => {
 
       {/* Baseline Comparison Table */}
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
-        <h2 className="text-lg font-semibold mb-4">השוואה לבסיס</h2>
+        <div className="flex items-center gap-2 mb-4">
+          <h2 className="text-lg font-semibold">השוואה לבסיס</h2>
+          <InfoTip text="מעקב התקדמות הצוער לאורך זמן, השוואה לקו בסיס וצפי מגמה" />
+        </div>
         <table className="w-full text-right">
           <thead>
             <tr style={{ backgroundColor: 'var(--hover)' }}>

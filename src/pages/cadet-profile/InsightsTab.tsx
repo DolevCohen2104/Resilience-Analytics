@@ -6,6 +6,7 @@ import {
 import {
   insightsData, recommendationsData, commanderNotes
 } from '../../data/mockData';
+import InfoTip from '../../components/InfoTip';
 
 const tagColors: Record<string, string> = {
   tactical: 'bg-idf-red/[0.13] text-idf-red border-idf-red/20',
@@ -47,6 +48,7 @@ const InsightsTab: React.FC = () => {
         <div className="flex items-center gap-2 mb-4">
           <RiLightbulbLine className="text-idf-orange text-lg" />
           <h2 className="text-lg font-semibold">תובנות אוטומטיות</h2>
+          <InfoTip text="תובנות מבוססות נתונים שנוצרו אוטומטית על ידי המערכת" />
         </div>
         <div className="space-y-3">
           {insightsData.map(insight => (
@@ -68,6 +70,7 @@ const InsightsTab: React.FC = () => {
           <div className="flex items-center gap-2">
             <RiStickyNoteLine className="text-idf-purple text-lg" />
             <h2 className="text-lg font-semibold">הערות מפקד</h2>
+            <InfoTip text="תובנות מבוססות נתונים שנוצרו אוטומטית על ידי המערכת" />
           </div>
           <div className="relative">
             <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-dim)' }} />
@@ -103,6 +106,7 @@ const InsightsTab: React.FC = () => {
         <div className="flex items-center gap-2 mb-4">
           <RiCheckboxCircleLine className="text-idf-green text-lg" />
           <h2 className="text-lg font-semibold">המלצות אימון</h2>
+          <InfoTip text="המלצות פעולה מותאמות אישית לשיפור חוסן הצוער" />
         </div>
         <div className="space-y-3">
           {recommendationsData.map(rec => (
@@ -119,6 +123,7 @@ const InsightsTab: React.FC = () => {
         <div className="flex items-center gap-2 mb-4">
           <RiFlag2Line className="text-idf-blue text-lg" />
           <h2 className="text-lg font-semibold">יעדי פיתוח</h2>
+          <InfoTip text="המלצות פעולה מותאמות אישית לשיפור חוסן הצוער" />
         </div>
         <div className="space-y-4">
           {devTargets.map(target => (
