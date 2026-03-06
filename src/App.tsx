@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import CadetProfile from './pages/CadetProfile';
+import SimulationSummary from './pages/SimulationSummary';
+import SimulationManagement from './pages/SimulationManagement';
+import AdvancedAnalytics from './pages/AdvancedAnalytics';
+import CommanderView from './pages/CommanderView';
+import SystemSettings from './pages/SystemSettings';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/cadet/:id" element={<CadetProfile />} />
+          <Route path="/simulation-summary" element={<SimulationSummary />} />
+          <Route path="/simulation-management" element={<SimulationManagement />} />
+          <Route path="/analytics" element={<AdvancedAnalytics />} />
+          <Route path="/commander" element={<CommanderView />} />
+          <Route path="/settings" element={<SystemSettings />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 

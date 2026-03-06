@@ -1,13 +1,87 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background-color: #0A0E17;
+  color: #E2E8F0;
+  direction: rtl;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0E17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+@layer components {
+  .stat-card {
+    @apply bg-dark-surface border border-dark-border rounded-[14px] p-5 transition-all duration-200;
+  }
+  .stat-card:hover {
+    @apply border-idf-blue shadow-[0_0_20px_rgba(56,189,248,0.1)];
+    transform: scale(1.01);
+  }
+  .badge {
+    @apply px-2.5 py-0.5 rounded-full text-[11px] font-semibold border;
+  }
+  .badge-combat {
+    @apply bg-idf-red/[0.13] text-idf-red border-idf-red/20;
+  }
+  .badge-command {
+    @apply bg-idf-blue/[0.13] text-idf-blue border-idf-blue/20;
+  }
+  .badge-institutional {
+    @apply bg-idf-green/[0.13] text-idf-green border-idf-green/20;
+  }
+  .badge-risk-low {
+    @apply bg-idf-green/[0.13] text-idf-green border-idf-green/20;
+  }
+  .badge-risk-medium {
+    @apply bg-idf-orange/[0.13] text-idf-orange border-idf-orange/20;
+  }
+  .badge-risk-high {
+    @apply bg-idf-red/[0.13] text-idf-red border-idf-red/20;
+  }
+  .glow-dot {
+    @apply w-2 h-2 rounded-full;
+    animation: pulse-glow 2s infinite;
+  }
+  .tab-btn {
+    @apply px-4 py-2 text-sm font-medium text-text-secondary transition-all duration-200 border-b-2 border-transparent;
+  }
+  .tab-btn.active {
+    @apply text-idf-blue border-idf-blue;
+  }
+  .tab-btn:hover:not(.active) {
+    @apply text-text-primary;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
