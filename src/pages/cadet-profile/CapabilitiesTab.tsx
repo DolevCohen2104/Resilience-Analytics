@@ -87,7 +87,7 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-1">
           <h2 className="text-lg font-semibold">עמידה - יציבות ביצוע תחת לחץ</h2>
-          <InfoTip text="יכולת עמידה - היכולת לשמור על תפקוד תחת לחץ ואי-ודאות" />
+          <InfoTip text={"איך לקרוא: גרף המציג את יכולת העמידה - שמירה על תפקוד תחת לחץ.\n\nציר Y = ציון עמידה (0-100). אזור ירוק (70+) = עמידה חזקה, אדום (<40) = קריסה.\n\nדוגמה: ציון 75 בתרחיש קרבי = הצוער שמר על תפקוד גם תחת לחץ כבד.\n\nציון יציב לאורך זמן = עקביות. נפילות חדות = נקודות שבירה שדורשות תרגול."} />
         </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>% הזמן שמירה על תפקוד אפקטיבי בשיא הלחץ</p>
         <ResponsiveContainer width="100%" height={250}>
@@ -109,7 +109,7 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-1">
           <h2 className="text-lg font-semibold">התאוששות - זמן חזרה לתפקוד</h2>
-          <InfoTip text="יכולת התאוששות - מהירות החזרה לתפקוד מיטבי לאחר אירוע לחץ" />
+          <InfoTip text={"איך לקרוא: גרף המציג מהירות חזרה לתפקוד מיטבי לאחר לחץ.\n\nציר Y = זמן התאוששות (שניות). ערך נמוך = מהיר = טוב יותר.\n\nדוגמה: התאוששות של 4.2 שניות בתרחיש A מול 8.5 שניות בתרחיש B = ביצוע טוב יותר בתרחיש A.\n\nמגמה יורדת = שיפור. מעל 10 שניות = דרוש תרגול נוסף."} />
         </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>מגמה יורדת = שיפור</p>
         <ResponsiveContainer width="100%" height={250}>
@@ -139,7 +139,7 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-1">
           <h2 className="text-lg font-semibold">הסתגלות - תגובה לשינויים באמצע משימה</h2>
-          <InfoTip text="יכולת הסתגלות - היכולת ללמוד ולהשתפר מניסיון קודם" />
+          <InfoTip text={"איך לקרוא: גרף המציג את יכולת הלמידה וההסתגלות מניסיון.\n\nציר Y = ציון הסתגלות (0-100). עלייה בין חזרות על תרחיש = למידה.\n\nדוגמה: תרחיש שחוזר 3 פעמים עם ציונים 55, 68, 79 = הסתגלות מצוינת (שיפור של 24 נקודות).\n\nמגמה עולה = הצוער לומד מטעויות. קו שטוח = דרוש שינוי גישה באימון."} />
         </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>ציון הסתגלות כאשר פרמטרי התרחיש משתנים באופן בלתי צפוי</p>
         <ResponsiveContainer width="100%" height={250}>

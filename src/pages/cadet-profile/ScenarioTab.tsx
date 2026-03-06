@@ -30,7 +30,7 @@ const ScenarioTab: React.FC = () => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
           <h2 className="text-lg font-semibold">ביצועים לפי תרחיש</h2>
-          <InfoTip text="טבלת ביצועי צוער בתרחישים שונים. לחיצה על תרחיש תציג פירוט מלא" />
+          <InfoTip text={"איך לקרוא: כל שורה = תרחיש סימולציה. העמודות מציגות: שם, רמת קושי, ציון ביצוע, וזמן השלמה.\n\nציון ביצוע: ירוק (70+) = הצלחה, כתום (50-69) = בינוני, אדום (<50) = כישלון.\n\nדוגמה: תרחיש 'שבוי' עם ציון 82 וזמן 12:30 = ביצוע מצוין בתרחיש זה.\n\nלחיצה על שורה תציג פירוט מלא כולל נתונים ביומטריים."} />
         </div>
         <table className="w-full text-right">
           <thead>
@@ -92,7 +92,7 @@ const ScenarioTab: React.FC = () => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
           <h2 className="text-lg font-semibold">מפת קושי-ביצועים</h2>
-          <InfoTip text="טבלת ביצועי צוער בתרחישים שונים. לחיצה על תרחיש תציג פירוט מלא" />
+          <InfoTip text={"איך לקרוא: כל שורה = תרחיש סימולציה. העמודות מציגות: שם, רמת קושי, ציון ביצוע, וזמן השלמה.\n\nציון ביצוע: ירוק (70+) = הצלחה, כתום (50-69) = בינוני, אדום (<50) = כישלון.\n\nדוגמה: תרחיש 'שבוי' עם ציון 82 וזמן 12:30 = ביצוע מצוין בתרחיש זה.\n\nלחיצה על שורה תציג פירוט מלא כולל נתונים ביומטריים."} />
         </div>
         <ResponsiveContainer width="100%" height={320}>
           <ScatterChart>
@@ -134,7 +134,7 @@ const ScenarioTab: React.FC = () => {
             <h2 className="text-lg font-semibold text-idf-blue">
               {scenarioBreakdown.find(s => s.name === selectedScenario)?.nameHe} - פירוט
             </h2>
-            <InfoTip text="טבלת ביצועי צוער בתרחישים שונים. לחיצה על תרחיש תציג פירוט מלא" />
+            <InfoTip text={"איך לקרוא: כל שורה = תרחיש סימולציה. העמודות מציגות: שם, רמת קושי, ציון ביצוע, וזמן השלמה.\n\nציון ביצוע: ירוק (70+) = הצלחה, כתום (50-69) = בינוני, אדום (<50) = כישלון.\n\nדוגמה: תרחיש 'שבוי' עם ציון 82 וזמן 12:30 = ביצוע מצוין בתרחיש זה.\n\nלחיצה על שורה תציג פירוט מלא כולל נתונים ביומטריים."} />
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--bg)' }}>

@@ -35,7 +35,7 @@ const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
       </button>
       {open && (
         <div
-          className="absolute z-50 w-72 p-3.5 rounded-xl shadow-lg text-right"
+          className="absolute z-50 w-96 p-4 rounded-xl shadow-lg text-right max-h-80 overflow-y-auto"
           style={{
             backgroundColor: 'var(--surface)',
             border: '1px solid var(--border)',
@@ -46,7 +46,7 @@ const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
           }}
         >
           <div className="absolute -top-1.5 right-2 w-3 h-3 rotate-45" style={{ backgroundColor: 'var(--surface)', borderTop: '1px solid var(--border)', borderRight: '1px solid var(--border)', borderLeft: 'none', borderBottom: 'none' }} />
-          <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>{text}</p>
+          <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--text-secondary)' }}>{text}</p>
         </div>
       )}
     </div>

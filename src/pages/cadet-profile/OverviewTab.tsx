@@ -67,7 +67,7 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-2">
           <h2 className="text-lg font-semibold">רדאר חמישה מרכיבי חוסן</h2>
-          <InfoTip text="תרשים רדאר המציג את חמשת מרכיבי החוסן: ערכי, רגשי, קוגניטיבי, חברתי ופיזי" />
+          <InfoTip text={"איך לקרוא: כל קודקוד = מרכיב חוסן (ערכי, רגשי, קוגניטיבי, חברתי, פיזי). המרחק מהמרכז = הציון (0-100).\n\nכחול = נוכחי, מקווקו = בסיס.\n\nדוגמה: קודקוד 'רגשי' ב-72 (כחול) מול 58 (בסיס) = שיפור של 14 נקודות.\n\nצורה עגולה ומאוזנת = חוסן אחיד. שקע חד = מרכיב חלש שדורש חיזוק."} />
         </div>
         <RadarChart data={radarData} size="large" />
       </div>
@@ -76,7 +76,7 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-6">
           <h2 className="text-lg font-semibold">ציר זמן - אבני דרך</h2>
-          <InfoTip text="ציר זמן של אירועים ואבני דרך משמעותיים" />
+          <InfoTip text={"איך לקרוא: ציר זמן כרונולוגי של אירועים משמעותיים בשירות הצוער.\n\nכל נקודה = אירוע (סימולציה, אבן דרך, טריגר).\n\nדוגמה: נקודה ירוקה ב-15.01 = אבן דרך שהושגה. נקודה אדומה ב-20.01 = טריגר לחץ שזוהה.\n\nריכוז אירועים אדומים = תקופה מאתגרת. ירוקים ברצף = התקדמות חיובית."} />
         </div>
         <div className="relative">
           <div className="absolute top-4 right-4 left-4 h-0.5" style={{ backgroundColor: 'var(--border)' }} />

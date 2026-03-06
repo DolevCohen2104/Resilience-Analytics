@@ -40,7 +40,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiHeartPulseLine className="text-idf-blue text-lg" />
           <h2 className="text-lg font-semibold">שונות דופק - HRV</h2>
-          <InfoTip text="שונות קצב לב (HRV) - מדד לוויסות מערכת העצבים האוטונומית. ערך גבוה מעיד על גמישות פיזיולוגית" />
+          <InfoTip text={"איך לקרוא: ציר X = זמן, ציר Y = שונות קצב לב (ms). ערך גבוה = גמישות פיזיולוגית טובה.\n\nטווח תקין: 40-100ms. מתחת ל-30ms = לחץ גבוה.\n\nדוגמה: HRV יורד מ-65 ל-35 במהלך סימולציה = תגובת לחץ חזקה. חזרה ל-60 תוך 3 דקות = התאוששות טובה.\n\nקו יציב = ויסות טוב. תנודות חדות = קושי בוויסות."} />
         </div>
         <ResponsiveContainer width="100%" height={220}>
           <AreaChart data={cadetSessionHistory}>
@@ -72,7 +72,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiDropLine className="text-idf-red text-lg" />
           <h2 className="text-lg font-semibold">מוליכות עור - GSR</h2>
-          <InfoTip text="תגובה גלוונית של העור - מדד לעוררות רגשית ולחץ. ערכים גבוהים מעידים על לחץ מוגבר" />
+          <InfoTip text={"איך לקרוא: ציר X = זמן, ציר Y = מוליכות עורית (µS). ערך גבוה = עוררות רגשית/לחץ מוגבר.\n\nטווח מנוחה: 1-5µS. מעל 10µS = לחץ משמעותי.\n\nדוגמה: קפיצה מ-3 ל-12µS בזמן טריגר = תגובת לחץ חזקה. ירידה חזרה ל-5µS = הרגעה.\n\nשיאים תכופים = רגישות גבוהה ללחץ."} />
         </div>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={cadetSessionHistory}>
@@ -105,7 +105,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiEyeLine className="text-idf-green text-lg" />
           <h2 className="text-lg font-semibold">מעקב עיניים</h2>
-          <InfoTip text="מעקב עיניים - מדד לריכוז, קשב ועיבוד מידע קוגניטיבי" />
+          <InfoTip text={"איך לקרוא: מציג את דפוסי המבט - ריכוז, קשב וסריקת שדה.\n\nאחוז ריכוז: מעל 70% = קשב גבוה, מתחת ל-40% = פיזור.\n\nדוגמה: ריכוז 82% באזור המטרה = עיבוד מידע ממוקד. 35% = הצוער מתקשה להתרכז.\n\nדפוס סריקה סדור = חשיבה מאורגנת. מבט קפצני = חרדה או בלבול."} />
         </div>
         <div className="grid grid-cols-2 gap-6">
           <div>
@@ -151,7 +151,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         <div className="flex items-center gap-2 mb-4">
           <RiTimerLine className="text-idf-purple text-lg" />
           <h2 className="text-lg font-semibold">זמן תגובה קוגניטיבי</h2>
-          <InfoTip text="זמן תגובה - מהירות עיבוד מידע וקבלת החלטות תחת לחץ" />
+          <InfoTip text={"איך לקרוא: ציר X = מפגש, ציר Y = זמן תגובה (ms). ערך נמוך = מהיר יותר = טוב יותר.\n\nטווח תקין: 200-500ms. מעל 800ms = איטי מהרגיל.\n\nדוגמה: זמן תגובה ירד מ-450ms ל-320ms לאורך 5 מפגשים = שיפור של 29%.\n\nמגמה יורדת = שיפור בקבלת החלטות תחת לחץ."} />
         </div>
         <div className="grid grid-cols-2 gap-6">
           <div>

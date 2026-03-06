@@ -88,7 +88,7 @@ const AdvancedAnalytics: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold">השוואת עוצמות - ציון חוסן vs זמן התאוששות</h2>
-              <InfoTip text="ניתוח קבוצתי - פיזור צוערים לפי ציון חוסן וזמן התאוששות. כל נקודה מייצגת צוער" />
+              <InfoTip text={"איך לקרוא: כל נקודה = צוער. ציר X = ציון חוסן, ציר Y = זמן התאוששות. גודל הנקודה = מספר מפגשים.\n\nפינה ימנית-תחתונה = אידיאלי (חוסן גבוה + התאוששות מהירה).\n\nדוגמה: נקודה ב-(78, 3.5) = צוער עם ציון חוסן 78 שמתאושש ב-3.5 שניות.\n\nאשכול של נקודות = קבוצה דומה. נקודות בודדות = חריגים שדורשים תשומת לב."} />
             </div>
             <ResponsiveContainer width="100%" height={400}>
               <ScatterChart>
@@ -132,7 +132,7 @@ const AdvancedAnalytics: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold">השוואת בסיס מול נוכחי - חמישה מרכיבים</h2>
-              <InfoTip text="מפת חום המציגה את ביצועי הצוערים לפי מרכיבי חוסן ויכולות. צבע כהה = ציון גבוה" />
+              <InfoTip text={"איך לקרוא: עמודות מציגות כל מרכיב חוסן - השוואה בין ציון בסיס (אפור) לנוכחי (כחול).\n\nעמודה כחולה גבוהה מאפורה = שיפור. הפוך = נסיגה.\n\nדוגמה: מרכיב 'רגשי' - בסיס 55, נוכחי 72 = שיפור של 31%.\n\nהפער בין העמודות מראה את האפקטיביות של תוכנית האימון בכל מרכיב."} />
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={componentComparisonData}>
@@ -151,7 +151,7 @@ const AdvancedAnalytics: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold">מפת חום - ביצועים לאורך מפגשים</h2>
-              <InfoTip text="מפת חום המציגה את ביצועי הצוערים לפי מרכיבי חוסן ויכולות. צבע כהה = ציון גבוה" />
+              <InfoTip text={"איך לקרוא: כל תא = ביצוע של צוער (שורה) במפגש (עמודה). צבע כהה = ציון גבוה, בהיר = נמוך.\n\nירוק כהה = 80+, ירוק בהיר = 60-79, צהוב = 40-59, אדום = מתחת ל-40.\n\nדוגמה: שורה עם ירוק כהה ברוב התאים = צוער מצטיין. עמודה אדומה = מפגש קשה לכולם.\n\nדפוס אלכסוני = שיפור הדרגתי לאורך זמן."} />
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-right">
@@ -211,7 +211,7 @@ const AdvancedAnalytics: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold">טריגרים נפוצים ביותר</h2>
-              <InfoTip text="ניתוח טריגרים - זיהוי הגורמים המשפיעים ביותר על ביצועי החוסן" />
+              <InfoTip text={"איך לקרוא: תרשים המציג את הגורמים שהכי משפיעים על ביצועי החוסן.\n\nעמודה ארוכה = טריגר נפוץ יותר. צבע = חומרת ההשפעה (אדום = חמורה).\n\nדוגמה: 'רעש פתאומי' עם עמודה של 85% = גורם ל-85% מהצוערים לחוות ירידה בביצועים.\n\nהטריגרים בראש הרשימה = יעדים עיקריים לאימון."} />
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={triggers} layout="vertical">
@@ -232,7 +232,7 @@ const AdvancedAnalytics: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold">מסלול קריסה - מטריגר לתוצאה</h2>
-              <InfoTip text="ניתוח טריגרים - זיהוי הגורמים המשפיעים ביותר על ביצועי החוסן" />
+              <InfoTip text={"איך לקרוא: תרשים זרימה מטריגר לתוצאה. מראה כיצד גורם לחץ מוביל לירידה בביצועים.\n\nשלבים: טריגר > תגובה פיזיולוגית > השפעה קוגניטיבית > תוצאה.\n\nדוגמה: רעש > עלייה ב-GSR > ירידה בריכוז > שגיאות בהחלטות.\n\nזיהוי המסלול מאפשר התערבות מוקדמת בשלב הנכון."} />
             </div>
             <div className="grid grid-cols-3 gap-8">
               <div>
@@ -263,7 +263,7 @@ const AdvancedAnalytics: React.FC = () => {
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-4">
             <h2 className="text-lg font-semibold">שלושת הכושרים לאורך זמן - ממוצע יחידה</h2>
-            <InfoTip text="השוואת יכולות (עמידה, התאוששות, הסתגלות) ברמת היחידה" />
+            <InfoTip text={"איך לקרוא: שלושה קווים המציגים את התפתחות היכולות לאורך זמן.\n\nכחול = עמידה, ירוק = התאוששות, סגול = הסתגלות.\n\nדוגמה: קו כחול עולה מ-55 ל-72 ב-8 מפגשים = שיפור ממוצע של 2.1 נקודות למפגש בעמידה.\n\nקו שמתיישר = רמת רוויה - יתכן שנדרש שינוי בתוכנית האימון."} />
           </div>
           <ResponsiveContainer width="100%" height={350}>
             <AreaChart data={capabilityTrendData}>
@@ -326,7 +326,7 @@ const AdvancedAnalytics: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold">מסלול חזוי - הקרנת מגמה</h2>
-              <InfoTip text="מודל חיזוי המבוסס על נתונים היסטוריים לזיהוי מגמות עתידיות" />
+              <InfoTip text={"איך לקרוא: קו מלא = נתונים בפועל, קו מקווקו = חיזוי עתידי מבוסס מגמה.\n\nאזור מוצלל סביב החיזוי = טווח ביטחון (ככל שרחב יותר, החיזוי פחות ודאי).\n\nדוגמה: חיזוי של 75±8 בעוד 4 מפגשים = צפי לציון בין 67 ל-83.\n\nאם הקו בפועל מעל החיזוי = הצוער מתקדם מהר מהצפוי."} />
             </div>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={[

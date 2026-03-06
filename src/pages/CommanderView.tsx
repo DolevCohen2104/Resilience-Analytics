@@ -70,7 +70,7 @@ const CommanderView: React.FC = () => {
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-4">
             <h2 className="text-lg font-semibold">התפלגות חוסן לפי יחידת משנה</h2>
-            <InfoTip text="התפלגות ציוני חוסן ביחידה - מראה את פיזור הצוערים לפי רמות ביצוע" />
+            <InfoTip text={"איך לקרוא: גרף עמודות המציג כמה צוערים בכל טווח ציונים.\n\nציר X = טווח ציונים, ציר Y = מספר צוערים.\n\nדוגמה: עמודה של 12 בטווח 70-80 = 12 צוערים עם ציון חוסן בין 70 ל-80.\n\nהתפלגות ימינה (ציונים גבוהים) = יחידה חזקה. עמודות גבוהות משמאל = הרבה צוערים חלשים."} />
           </div>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={distributionData}>
@@ -91,7 +91,7 @@ const CommanderView: React.FC = () => {
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-2">
             <h2 className="text-lg font-semibold">רדאר חמישה מרכיבים - ממוצע יחידה</h2>
-            <InfoTip text="מדדי ביצוע מפתח ברמת היחידה - סיכום מצב חוסן כולל" />
+            <InfoTip text={"איך לקרוא: ממוצע היחידה בכל מרכיב חוסן. כל קודקוד = מרכיב (0-100).\n\nכחול = נוכחי, מקווקו = בסיס.\n\nדוגמה: 'פיזי' ב-80 מול בסיס 65 = שיפור משמעותי של 23% במרכיב הפיזי.\n\nקודקוד ששקוע פנימה = מרכיב שדורש חיזוק ברמת היחידה."} />
           </div>
           <RadarChart data={unitRadar} size="large" />
         </div>
@@ -102,7 +102,7 @@ const CommanderView: React.FC = () => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <h2 className="text-lg font-semibold">דוח מוכנות</h2>
-            <InfoTip text="טבלת מוכנות - מצב כלל הצוערים ורמת המוכנות של כל אחד" />
+            <InfoTip text={"איך לקרוא: טבלה המציגה את רמת המוכנות של כל צוער.\n\nסטטוס: ירוק = מוכן, כתום = מוכן חלקית, אדום = לא מוכן.\n\nדוגמה: צוער עם 3 ירוקים ו-1 כתום = מוכן ברוב התחומים אך דרוש שיפור בתחום אחד.\n\nאחוז המוכנות הכולל של היחידה מוצג בראש העמוד."} />
           </div>
           <div className="flex items-center gap-3">
             <div className="relative">

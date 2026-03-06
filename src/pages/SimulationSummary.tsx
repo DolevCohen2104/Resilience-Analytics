@@ -63,7 +63,7 @@ const SimulationSummary: React.FC = () => {
         <div className="flex items-center gap-2 mb-2 justify-center">
           <RiShieldLine className="text-idf-blue text-xl" />
           <h2 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>משולש החוסן</h2>
-          <InfoTip text="משולש החוסן מציג את שלושת כושרי החוסן: עמידה (שמירת רציפות תפקודית תחת לחץ), התאוששות (חזרה מהירה לביצוע אפקטיבי), והסתגלות (גמישות התנהגותית בתנאים משתנים). ככל שהמשולש הצבוע גדול יותר, כך הביצוע טוב יותר." />
+          <InfoTip text={"איך לקרוא: המשולש מציג את שלוש היכולות המרכזיות - עמידה (למעלה), התאוששות (שמאל למטה), הסתגלות (ימין למטה).\n\nהמספר בכל קודקוד = ציון היכולת (0-100). ככל שהמספר גבוה יותר, היכולת חזקה יותר.\n\nדוגמה: עמידה 78, התאוששות 65, הסתגלות 71 - הצוער חזק בעמידה אך זקוק לחיזוק בהתאוששות.\n\nמשולש מאוזן (ציונים דומים) = חוסן יציב. פער גדול בין קודקודים = יש לטפל ביכולת החלשה."} />
         </div>
         <p className="text-base text-center mb-4" style={{ color: 'var(--text-dim)' }}>
           שלושת כושרי החוסן - כל קודקוד מייצג יכולת מרכזית
@@ -171,7 +171,7 @@ const SimulationSummary: React.FC = () => {
       <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-5">
           <h2 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>רכיב חברתי וצוותי</h2>
-          <InfoTip text="מדד התרומה החברתית של הצוער לצוות במהלך הסימולציה. כולל לכידות קבוצה (תמיכה באחרים), נסוך ביטחון (חיזוק הצוות), וציון תמיכה חברתית כגורם חוסן קריטי." />
+          <InfoTip text={"איך לקרוא: מציג את האינטראקציות החברתיות של הצוער בזמן הסימולציה.\n\nתפקידי מנהיגות: כמה פעמים הצוער נטל יוזמה או הוביל את הקבוצה.\nתמיכה בזולת: מספר מקרים שהצוער סייע לאחרים.\n\nדוגמה: 5 תפקידי מנהיגות + 3 מקרי תמיכה = צוער בעל מיומנויות חברתיות גבוהות.\n\nציון חברתי גבוה = צוער שמחזק את הקבוצה."} />
         </div>
         <div className="space-y-5">
           {[
@@ -204,7 +204,7 @@ const SimulationSummary: React.FC = () => {
       <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
         <div className="flex items-center gap-2 mb-5">
           <h2 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>תמונת שיפור אישית</h2>
-          <InfoTip text="השוואה בין מדדי הבסיס של הצוער (מדידה ראשונה) למדדים הנוכחיים. עמודה אפורה = ערך בסיס, עמודה צבעונית = ערך נוכחי. ירוק מסמן שיפור." />
+          <InfoTip text={"איך לקרוא: רשימת התחומים שבהם הצוער צריך להשתפר, ממוינים לפי חשיבות.\n\nכל שורה מציגה: שם המרכיב, הציון הנוכחי, והפער מהיעד.\n\nדוגמה: 'ויסות רגשי - 52/100 (יעד: 70)' - הצוער צריך לשפר 18 נקודות במרכיב זה.\n\nפער גדול = עדיפות גבוהה לתרגול."} />
         </div>
         <div className="grid grid-cols-3 gap-6">
           {comparisonMetrics.map(m => {
@@ -237,7 +237,7 @@ const SimulationSummary: React.FC = () => {
       <div className="rounded-[14px] p-6" style={{ backgroundColor: 'var(--surface)', border: '1px solid rgba(56,189,248,0.2)' }}>
         <div className="flex items-center gap-2 mb-5">
           <h2 className="text-xl font-bold text-idf-blue">המלצות ממוקדות</h2>
-          <InfoTip text="המלצות מהמפקד לצוער לקראת המפגש הבא. כוללות תרגולי ויסות גופני ורגשי, שיפור מקצועי, ותרחיש מומלץ להמשך אימון." />
+          <InfoTip text={"איך לקרוא: המלצות פעולה מותאמות אישית המבוססות על תוצאות הסימולציה.\n\nכל המלצה כוללת: סוג הפעולה, מרכיב החוסן הרלוונטי, ורמת הדחיפות.\n\nדוגמה: 'תרגול נשימות תחת לחץ (רגשי, דחיפות גבוהה)' - יש לשלב תרגול זה בתוכנית האימונים הקרובה.\n\nסדר ההמלצות = סדר העדיפות המומלץ."} />
         </div>
         <div className="space-y-3">
           {[

@@ -81,7 +81,7 @@ const Dashboard: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>מגמת חוסן לאורך זמן</h2>
-                <InfoTip text="גרף מגמה המציג את התפתחות ציוני החוסן לאורך זמן עבור כל זרוע (קרבי, מטכ״לי, מוסדי). ניתן לסנן לפי טווח זמן." />
+                <InfoTip text={"איך לקרוא: ציר X = מספר מפגש, ציר Y = ציון חוסן (0-100). כל קו צבעוני מייצג זרוע שונה.\n\nאדום = קרבי, כחול = מטכ\"לי, ירוק = מוסדי.\n\nדוגמה: אם הקו האדום עולה ממפגש 3 למפגש 7 מ-45 ל-62, משמע שציון החוסן של הזרוע הקרבית עלה ב-17 נקודות.\n\nמגמה עולה = שיפור, מגמה יורדת = דרוש תשומת לב."} />
               </div>
               <div className="flex gap-1">
                 {(['week', 'month', 'quarter', 'all'] as const).map(range => (
@@ -120,7 +120,7 @@ const Dashboard: React.FC = () => {
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>צוערים הדורשים תשומת לב</h2>
-                <InfoTip text="טבלת צוערים בסיכון גבוה או במגמת ירידה. לחיצה על שורה תפתח את פרופיל הצוער המלא." />
+                <InfoTip text={"איך לקרוא: הטבלה מציגה את 5 הצוערים הדורשים תשומת לב מיידית, ממוינים מהנמוך לגבוה.\n\nרמת סיכון: אדום = גבוה, כתום = בינוני.\nמגמה: חץ למטה = ירידה, חץ למעלה = שיפור.\n\nדוגמה: צוער עם ציון 42 וחץ למטה באדום - סיכון גבוה עם מגמת הידרדרות, דורש התערבות מיידית.\n\nלחיצה על שורה תפתח את פרופיל הצוער המלא."} />
               </div>
               <span className="text-sm" style={{ color: 'var(--text-dim)' }}>{atRiskCadets.length} צוערים</span>
             </div>
@@ -173,7 +173,7 @@ const Dashboard: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-2">
               <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>רדאר חמישה מרכיבים - ממוצע יחידה</h2>
-              <InfoTip text="תרשים רדאר המציג את ממוצע היחידה בחמשת מרכיבי החוסן: ערכי, רגשי, קוגניטיבי, חברתי ופיזי. הקו המקווקו מייצג את קו הבסיס." />
+              <InfoTip text={"איך לקרוא: כל קודקוד מייצג מרכיב חוסן (ערכי, רגשי, קוגניטיבי, חברתי, פיזי). ככל שהנקודה רחוקה יותר מהמרכז - הציון גבוה יותר (0-100).\n\nכחול מלא = ציון נוכחי, קו מקווקו = קו בסיס.\n\nדוגמה: אם הקודקוד \"רגשי\" נמצא ב-72 (כחול) ובבסיס היה 58 (מקווקו), חל שיפור של 14 נקודות במרכיב הרגשי.\n\nצורה מאוזנת = חוסן אחיד, צורה לא סימטרית = יש מרכיב חלש שדורש חיזוק."} />
             </div>
             <RadarChart data={unitAvgComponents} />
           </div>
@@ -182,7 +182,7 @@ const Dashboard: React.FC = () => {
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-4">
               <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>פעילות אחרונה</h2>
-              <InfoTip text="פיד אירועים אחרונים: סימולציות, טריגרים, אבני דרך והערכות. לחיצה על אירוע תפתח את פרופיל הצוער הרלוונטי." />
+              <InfoTip text={"איך לקרוא: כל שורה היא אירוע שהתרחש לאחרונה. הנקודה הצבעונית מציינת את סוג האירוע:\n\nכחול = סימולציה, אדום = טריגר/התראה, ירוק = אבן דרך/הישג, כתום = הערכה.\n\nדוגמה: נקודה אדומה עם \"טריגר לחץ זוהה עבור צוער X\" - המערכת זיהתה חריגה ביומטרית.\n\nלחיצה על אירוע תפתח את פרופיל הצוער."} />
             </div>
             <div className="space-y-3 max-h-[340px] overflow-y-auto">
               {activityFeed.map(event => (

@@ -91,7 +91,7 @@ const SystemSettings: React.FC = () => {
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-4">
             <h2 className="text-lg font-semibold">הגדרת ספי התראות</h2>
-            <InfoTip text="הגדרת ספי התראה - קביעת ערכי סף להתראות אוטומטיות על מצב חוסן" />
+            <InfoTip text={"איך לקרוא: הגדרת ערכי סף שמעליהם/מתחתיהם תופעל התראה אוטומטית.\n\nכל שורה = מדד (HRV, GSR, ציון חוסן). ערך הסף קובע מתי נשלחת התראה.\n\nדוגמה: סף HRV = 30ms - כאשר HRV של צוער יורד מתחת ל-30, תישלח התראה למפקד.\n\nסף נמוך מדי = התראות רבות מדי (רעש). סף גבוה מדי = החמצת מקרים חשובים."} />
           </div>
           <table className="w-full text-right">
             <thead>
@@ -154,7 +154,7 @@ const SystemSettings: React.FC = () => {
           <div className="flex items-center gap-2 mb-4">
             <RiShieldUserLine className="text-idf-purple text-lg" />
             <h2 className="text-lg font-semibold">מטריצת הרשאות (RBAC)</h2>
-            <InfoTip text="ניהול הרשאות - הגדרת תפקידים ורמות גישה למשתמשי המערכת" />
+            <InfoTip text={"איך לקרוא: טבלת הרשאות לפי תפקיד. כל שורה = תפקיד, כל עמודה = פעולה.\n\nV = מורשה, X = חסום.\n\nדוגמה: 'מפקד פלוגה' עם V בעמודת 'צפייה בפרופיל' ו-X בעמודת 'עריכת הגדרות' = יכול לצפות אך לא לשנות הגדרות.\n\nמומלץ לתת הרשאות מינימליות הנדרשות לתפקיד."} />
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-right">

@@ -135,7 +135,7 @@ const SimulationManagement: React.FC = () => {
         <div className="rounded-[14px] p-6" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-6">
             <h2 className="text-lg font-semibold">עורך עץ החלטות - היתקלות בשטח בנוי</h2>
-            <InfoTip text="עץ החלטות המציג את נקודות ההחלטה והתוצאות האפשריות בכל תרחיש" />
+            <InfoTip text={"איך לקרוא: עץ ההחלטות מציג את מבנה התרחיש - כל צומת = נקודת החלטה, כל ענף = תוצאה אפשרית.\n\nעיגול כחול = נקודת החלטה, ירוק = תוצאה חיובית, אדום = תוצאה שלילית.\n\nדוגמה: צומת 'פינוי פצועים' מתפצל ל-3 ענפים - כל ענף מייצג בחירה שונה עם השלכות שונות על ציון החוסן.\n\nהענפים מראים את ההשפעה של כל החלטה על מרכיבי החוסן השונים."} />
           </div>
 
           {/* Decision Tree Visualization */}
@@ -217,7 +217,7 @@ const SimulationManagement: React.FC = () => {
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <h2 className="text-base font-semibold">שידור חי - היתקלות בשטח בנוי</h2>
-                <InfoTip text="ניטור סימולציה בזמן אמת - מעקב אחר מדדים ביומטריים וביצועים" />
+                <InfoTip text={"איך לקרוא: מסך ניטור בזמן אמת המציג את מדדי הצוערים במהלך סימולציה פעילה.\n\nקו ירוק = בטווח תקין, כתום = בגבול, אדום = חריגה.\n\nדוגמה: HRV של צוער יורד מ-60 ל-28 (אדום) = הצוער חווה לחץ חריג ויתכן שצריך התערבות.\n\nכפתור 'עצור' = הפסקת סימולציה במקרה חירום."} />
               </div>
               <div className="flex items-center gap-2">
                 <div className="glow-dot bg-idf-green shadow-[0_0_8px_rgba(0,229,160,0.5)]" />

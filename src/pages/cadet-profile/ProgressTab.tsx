@@ -46,7 +46,7 @@ const ProgressTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-1">
           <h2 className="text-lg font-semibold">מסלול חוסן</h2>
-          <InfoTip text="מעקב התקדמות הצוער לאורך זמן, השוואה לקו בסיס וצפי מגמה" />
+          <InfoTip text={"איך לקרוא: גרף מסלול המציג את התפתחות ציון החוסן לאורך זמן.\n\nציר X = תאריך/מפגש, ציר Y = ציון חוסן. קו מלא = בפועל, קו מקווקו = קו בסיס.\n\nדוגמה: בסיס 55, נוכחי 72 = שיפור של 31% מתחילת התוכנית.\n\nהטבלה למטה משווה כל מרכיב לבסיס. ירוק = שיפור, אדום = ירידה."} />
         </div>
         <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>זמן התאוששות (ירידה = שיפור) + כושר תפקודי (עלייה = שיפור)</p>
         <ResponsiveContainer width="100%" height={300}>
@@ -104,7 +104,7 @@ const ProgressTab: React.FC<Props> = ({ cadet }) => {
       <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
           <h2 className="text-lg font-semibold">השוואה לבסיס</h2>
-          <InfoTip text="מעקב התקדמות הצוער לאורך זמן, השוואה לקו בסיס וצפי מגמה" />
+          <InfoTip text={"איך לקרוא: גרף מסלול המציג את התפתחות ציון החוסן לאורך זמן.\n\nציר X = תאריך/מפגש, ציר Y = ציון חוסן. קו מלא = בפועל, קו מקווקו = קו בסיס.\n\nדוגמה: בסיס 55, נוכחי 72 = שיפור של 31% מתחילת התוכנית.\n\nהטבלה למטה משווה כל מרכיב לבסיס. ירוק = שיפור, אדום = ירידה."} />
         </div>
         <table className="w-full text-right">
           <thead>

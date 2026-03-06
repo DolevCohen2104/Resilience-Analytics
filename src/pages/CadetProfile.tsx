@@ -56,7 +56,7 @@ const CadetProfile: React.FC = () => {
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <h1 className="text-2xl font-bold">{cadet.id}</h1>
-                <InfoTip text="פרופיל צוער מלא הכולל ציון חוסן, מגמה, ומידע ביומטרי. נתונים מתעדכנים בזמן אמת." />
+                <InfoTip text={"איך לקרוא: הטבעת הציון מציגה את ציון החוסן הכולל (0-100). הצבע משתנה לפי הציון:\n\nירוק (70+) = חוסן גבוה, כתום (50-69) = בינוני, אדום (<50) = נמוך.\n\nדוגמה: טבעת ירוקה עם 78 = צוער בעל חוסן גבוה.\n\nהתגים מציגים: זרוע, סטטוס, רמת סיכון. מגמה עם חץ = כיוון השינוי."} />
                 <span className="text-base font-mono" style={{ color: 'var(--text-dim)' }}>{cadet.alias}</span>
                 <span className={`badge badge-${cadet.sector}`}>{sectorLabels[cadet.sector]}</span>
                 <span className={`badge ${

@@ -48,7 +48,7 @@ const InsightsTab: React.FC = () => {
         <div className="flex items-center gap-2 mb-4">
           <RiLightbulbLine className="text-idf-orange text-lg" />
           <h2 className="text-lg font-semibold">תובנות אוטומטיות</h2>
-          <InfoTip text="תובנות מבוססות נתונים שנוצרו אוטומטית על ידי המערכת" />
+          <InfoTip text={"איך לקרוא: תובנות שנוצרו אוטומטית מניתוח הנתונים. כל תובנה מסומנת בצבע לפי סוג:\n\nירוק = חיובית (הישג/שיפור), כתום = אזהרה, אדום = קריטית.\n\nדוגמה: 'שיפור עקבי של 15% בעמידה ב-3 מפגשים אחרונים' (ירוק) = מגמה חיובית שיש לחזק.\n\nתובנות אדומות דורשות התייחסות מיידית."} />
         </div>
         <div className="space-y-3">
           {insightsData.map(insight => (
@@ -70,7 +70,7 @@ const InsightsTab: React.FC = () => {
           <div className="flex items-center gap-2">
             <RiStickyNoteLine className="text-idf-purple text-lg" />
             <h2 className="text-lg font-semibold">הערות מפקד</h2>
-            <InfoTip text="תובנות מבוססות נתונים שנוצרו אוטומטית על ידי המערכת" />
+            <InfoTip text={"איך לקרוא: הערות שנרשמו ידנית על ידי המפקד. כל הערה כוללת תאריך, נושא ותוכן.\n\nדוגמה: '15.01 - הצוער הפגין מנהיגות יוצאת דופן בתרגיל לילה' = תיעוד חיובי שיכול לתמוך בהחלטות קידום.\n\nניתן להוסיף הערות חדשות בכל עת."} />
           </div>
           <div className="relative">
             <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-dim)' }} />
@@ -106,7 +106,7 @@ const InsightsTab: React.FC = () => {
         <div className="flex items-center gap-2 mb-4">
           <RiCheckboxCircleLine className="text-idf-green text-lg" />
           <h2 className="text-lg font-semibold">המלצות אימון</h2>
-          <InfoTip text="המלצות פעולה מותאמות אישית לשיפור חוסן הצוער" />
+          <InfoTip text={"איך לקרוא: המלצות פעולה ממוינות לפי עדיפות. כל המלצה כוללת: סוג תרגול, מרכיב חוסן, ורמת דחיפות.\n\nדוגמה: 'תרגול מדיטציה תחת לחץ (רגשי, דחיפות גבוהה)' = יש לשלב כבר במפגש הבא.\n\nהמלצות בראש הרשימה = עדיפות גבוהה. יש ליישם לפחות את 2-3 ההמלצות הראשונות."} />
         </div>
         <div className="space-y-3">
           {recommendationsData.map(rec => (
@@ -123,7 +123,7 @@ const InsightsTab: React.FC = () => {
         <div className="flex items-center gap-2 mb-4">
           <RiFlag2Line className="text-idf-blue text-lg" />
           <h2 className="text-lg font-semibold">יעדי פיתוח</h2>
-          <InfoTip text="המלצות פעולה מותאמות אישית לשיפור חוסן הצוער" />
+          <InfoTip text={"איך לקרוא: יעדי פיתוח מותאמים אישית לצוער. כל יעד כולל: תיאור, מדד הצלחה, ותאריך יעד.\n\nדוגמה: 'שיפור ויסות רגשי ל-70+ עד 01.04' = יעד ברור עם מדד מספרי וזמן.\n\nסימון V = יעד שהושג. עיגול ריק = בתהליך."} />
         </div>
         <div className="space-y-4">
           {devTargets.map(target => (
