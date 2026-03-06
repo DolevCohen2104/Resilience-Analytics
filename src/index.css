@@ -4,6 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============ THEME VARIABLES ============ */
+:root,
+[data-theme="dark"] {
+  --bg: #0A0E17;
+  --surface: #111827;
+  --border: #1E293B;
+  --hover: #1A2332;
+  --zebra: #0F1520;
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-dim: #94A3B8;
+  --chart-grid: #1E293B;
+  --chart-text: #94A3B8;
+  --tooltip-bg: #1A2332;
+  --tooltip-border: #334155;
+  --input-bg: #0A0E17;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="light"] {
+  --bg: #F1F5F9;
+  --surface: #FFFFFF;
+  --border: #D1D5DB;
+  --hover: #F3F4F6;
+  --zebra: #F9FAFB;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-dim: #64748B;
+  --chart-grid: #E2E8F0;
+  --chart-text: #475569;
+  --tooltip-bg: #FFFFFF;
+  --tooltip-border: #D1D5DB;
+  --input-bg: #F9FAFB;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --overlay-bg: rgba(0, 0, 0, 0.3);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,8 +50,10 @@
 
 body {
   font-family: 'Heebo', sans-serif;
-  background-color: #0A0E17;
-  color: #E2E8F0;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: var(--bg);
+  color: var(--text-primary);
   direction: rtl;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,28 +65,31 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0E17;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: var(--border);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: var(--text-dim);
 }
 
 @layer components {
   .stat-card {
-    @apply bg-dark-surface border border-dark-border rounded-[14px] p-5 transition-all duration-200;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    @apply rounded-[14px] p-5 transition-all duration-200;
   }
   .stat-card:hover {
-    @apply border-idf-blue shadow-[0_0_20px_rgba(56,189,248,0.1)];
+    border-color: #38BDF8;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
     transform: scale(1.01);
   }
   .badge {
-    @apply px-2.5 py-0.5 rounded-full text-[11px] font-semibold border;
+    @apply px-3 py-1 rounded-full text-xs font-semibold border;
   }
   .badge-combat {
     @apply bg-idf-red/[0.13] text-idf-red border-idf-red/20;
@@ -67,18 +110,68 @@ body {
     @apply bg-idf-red/[0.13] text-idf-red border-idf-red/20;
   }
   .glow-dot {
-    @apply w-2 h-2 rounded-full;
+    @apply w-2.5 h-2.5 rounded-full;
     animation: pulse-glow 2s infinite;
   }
   .tab-btn {
-    @apply px-4 py-2 text-sm font-medium text-text-secondary transition-all duration-200 border-b-2 border-transparent;
+    @apply px-5 py-2.5 text-base font-medium transition-all duration-200 border-b-2 border-transparent;
+    color: var(--text-secondary);
   }
   .tab-btn.active {
     @apply text-idf-blue border-idf-blue;
   }
   .tab-btn:hover:not(.active) {
-    @apply text-text-primary;
+    color: var(--text-primary);
   }
+
+  /* Theme-aware utility classes */
+  .theme-bg {
+    background-color: var(--bg);
+  }
+  .theme-surface {
+    background-color: var(--surface);
+  }
+  .theme-border {
+    border-color: var(--border);
+  }
+  .theme-hover:hover {
+    background-color: var(--hover);
+  }
+  .theme-text {
+    color: var(--text-primary);
+  }
+  .theme-text-secondary {
+    color: var(--text-secondary);
+  }
+  .theme-text-dim {
+    color: var(--text-dim);
+  }
+}
+
+/* Light mode adjustments for accent colors to stay readable */
+[data-theme="light"] .badge-combat {
+  @apply bg-idf-red/[0.08] border-idf-red/30;
+  color: #DC2626;
+}
+[data-theme="light"] .badge-command {
+  @apply bg-idf-blue/[0.08] border-idf-blue/30;
+  color: #0284C7;
+}
+[data-theme="light"] .badge-institutional {
+  @apply bg-idf-green/[0.08] border-idf-green/30;
+  color: #059669;
+}
+[data-theme="light"] .badge-risk-low {
+  @apply bg-idf-green/[0.08] border-idf-green/30;
+  color: #059669;
+}
+[data-theme="light"] .badge-risk-medium {
+  @apply bg-idf-orange/[0.08] border-idf-orange/30;
+  color: #D97706;
+}
+[data-theme="light"] .badge-risk-high {
+  @apply bg-idf-red/[0.08] border-idf-red/30;
+  color: #DC2626;
 }
 
 @keyframes pulse-glow {

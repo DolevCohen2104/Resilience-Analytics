@@ -22,12 +22,15 @@ const navItems = [
 
 const Sidebar: React.FC = () => {
   return (
-    <aside className="fixed right-0 top-0 h-screen w-[72px] bg-dark-surface border-l border-dark-border flex flex-col items-center py-6 z-50 hover:w-[220px] transition-all duration-300 group overflow-hidden">
+    <aside
+      className="fixed right-0 top-0 h-screen w-[72px] border-l flex flex-col items-center py-6 z-50 hover:w-[220px] transition-all duration-300 group overflow-hidden"
+      style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}
+    >
       <div className="mb-8 flex items-center justify-center w-full">
         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-idf-blue to-idf-green flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
           RC
         </div>
-        <span className="text-sm font-semibold text-text-primary mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        <span className="text-sm font-semibold mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap" style={{ color: 'var(--text-primary)' }}>
           Resilience Center
         </span>
       </div>
@@ -41,12 +44,13 @@ const Sidebar: React.FC = () => {
               `flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 ${
                 isActive
                   ? 'bg-idf-blue/10 text-idf-blue'
-                  : 'text-text-secondary hover:bg-dark-hover hover:text-text-primary'
+                  : ''
               }`
             }
+            style={({ isActive }) => isActive ? {} : { color: 'var(--text-secondary)' }}
           >
             <item.icon className="text-xl flex-shrink-0" />
-            <span className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            <span className="text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
               {item.labelHe}
             </span>
           </NavLink>

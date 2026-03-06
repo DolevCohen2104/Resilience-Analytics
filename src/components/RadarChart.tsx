@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
+import { useTheme } from '../ThemeContext';
 
 interface RadarChartProps {
   data: Array<{ subject: string; current: number; baseline: number; fullMark: number }>;
@@ -15,25 +16,30 @@ interface RadarChartProps {
 }
 
 const RadarChart: React.FC<RadarChartProps> = ({ data, size = 'small' }) => {
+  const { theme } = useTheme();
+  const gridColor = theme === 'dark' ? '#1E293B' : '#D1D5DB';
+  const labelColor = theme === 'dark' ? '#CBD5E1' : '#334155';
+  const tickColor = theme === 'dark' ? '#94A3B8' : '#64748B';
+
   return (
     <ResponsiveContainer width="100%" height={size === 'large' ? 350 : 250}>
       <RechartsRadarChart cx="50%" cy="50%" outerRadius={size === 'large' ? '70%' : '65%'} data={data}>
-        <PolarGrid stroke="#1E293B" />
+        <PolarGrid stroke={gridColor} />
         <PolarAngleAxis
           dataKey="subject"
-          tick={{ fill: '#94A3B8', fontSize: 11, fontFamily: 'Heebo' }}
+          tick={{ fill: labelColor, fontSize: 13, fontFamily: 'Heebo', fontWeight: 500 }}
         />
         <PolarRadiusAxis
           angle={90}
           domain={[0, 100]}
-          tick={{ fill: '#64748B', fontSize: 10 }}
+          tick={{ fill: tickColor, fontSize: 11 }}
           axisLine={false}
         />
         <Radar
           name="בסיס"
           dataKey="baseline"
-          stroke="#64748B"
-          fill="#64748B"
+          stroke={tickColor}
+          fill={tickColor}
           fillOpacity={0.1}
           strokeDasharray="5 5"
         />
@@ -45,7 +51,7 @@ const RadarChart: React.FC<RadarChartProps> = ({ data, size = 'small' }) => {
           fillOpacity={0.2}
         />
         <Legend
-          wrapperStyle={{ fontSize: '11px', fontFamily: 'Heebo' }}
+          wrapperStyle={{ fontSize: '13px', fontFamily: 'Heebo' }}
         />
       </RechartsRadarChart>
     </ResponsiveContainer>

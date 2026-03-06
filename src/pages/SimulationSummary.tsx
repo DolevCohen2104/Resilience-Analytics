@@ -36,29 +36,29 @@ const SimulationSummary: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Header */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-6 mb-6 text-center">
-        <h1 className="text-xl font-bold mb-1">סיכום תפקוד בסימולציה תחת לחץ</h1>
-        <p className="text-xs text-text-secondary mb-4">המיקוד אינו רק בהצלחת המשימה, אלא באיך שהמשימה בוצעה</p>
-        <div className="flex items-center justify-center gap-6 text-xs text-text-dim">
-          <span>תרחיש: <strong className="text-text-primary">היתקלות בשטח בנוי</strong></span>
-          <span>תאריך: <strong className="text-text-primary">2026-03-06</strong></span>
-          <span>משך: <strong className="text-text-primary">18 דקות</strong></span>
+      <div className="rounded-[14px] p-6 mb-6 text-center" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h1 className="text-3xl font-bold mb-1">סיכום תפקוד בסימולציה תחת לחץ</h1>
+        <p className="text-sm mb-4" style={{ color: 'var(--text-secondary)' }}>המיקוד אינו רק בהצלחת המשימה, אלא באיך שהמשימה בוצעה</p>
+        <div className="flex items-center justify-center gap-6 text-sm" style={{ color: 'var(--text-dim)' }}>
+          <span>תרחיש: <strong style={{ color: 'var(--text-primary)' }}>היתקלות בשטח בנוי</strong></span>
+          <span>תאריך: <strong style={{ color: 'var(--text-primary)' }}>2026-03-06</strong></span>
+          <span>משך: <strong style={{ color: 'var(--text-primary)' }}>18 דקות</strong></span>
           <span>קושי: <strong className="text-idf-orange">4/5</strong></span>
         </div>
       </div>
 
       {/* Resilience Triangle */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-6 mb-6">
+      <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4 justify-center">
           <RiShieldLine className="text-idf-blue text-lg" />
-          <h2 className="text-base font-semibold">משולש החוסן</h2>
+          <h2 className="text-lg font-semibold">משולש החוסן</h2>
         </div>
         <div className="flex justify-center mb-6">
           <svg width="300" height="260" viewBox="0 0 300 260">
             {/* Grid triangle */}
-            <polygon points="150,30 50,230 250,230" fill="none" stroke="#1E293B" strokeWidth="1" />
-            <polygon points="150,80 80,205 220,205" fill="none" stroke="#1E293B" strokeWidth="0.5" strokeDasharray="3 3" />
-            <polygon points="150,130 110,180 190,180" fill="none" stroke="#1E293B" strokeWidth="0.5" strokeDasharray="3 3" />
+            <polygon points="150,30 50,230 250,230" fill="none" stroke="var(--border)" strokeWidth="1" />
+            <polygon points="150,80 80,205 220,205" fill="none" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="3 3" />
+            <polygon points="150,130 110,180 190,180" fill="none" stroke="var(--border)" strokeWidth="0.5" strokeDasharray="3 3" />
 
             {/* Filled area */}
             <polygon
@@ -74,11 +74,11 @@ const SimulationSummary: React.FC = () => {
               const color = getColor(cap.score);
               return (
                 <g key={cap.key}>
-                  <circle cx={vertexPositions[i].x} cy={vertexPositions[i].y + (i === 0 ? 0 : 10)} r="20" fill="#111827" stroke={color} strokeWidth="2" />
+                  <circle cx={vertexPositions[i].x} cy={vertexPositions[i].y + (i === 0 ? 0 : 10)} r="20" fill="var(--bg)" stroke={color} strokeWidth="2" />
                   <text x={vertexPositions[i].x} y={vertexPositions[i].y + (i === 0 ? 5 : 15)} textAnchor="middle" fill={color} fontSize="14" fontWeight="bold" fontFamily="IBM Plex Mono">
                     {cap.score}
                   </text>
-                  <text x={vertexPositions[i].x} y={vertexPositions[i].y + (i === 0 ? -18 : 35)} textAnchor="middle" fill="#94A3B8" fontSize="12" fontFamily="Heebo">
+                  <text x={vertexPositions[i].x} y={vertexPositions[i].y + (i === 0 ? -18 : 35)} textAnchor="middle" fill="var(--text-secondary)" fontSize="12" fontFamily="Heebo">
                     {cap.he}
                   </text>
                 </g>
@@ -90,19 +90,19 @@ const SimulationSummary: React.FC = () => {
         {/* Capability Details */}
         <div className="grid grid-cols-3 gap-4">
           {capabilities.map(cap => (
-            <div key={cap.key} className="bg-dark-bg rounded-lg p-4 text-center">
-              <h3 className="text-sm font-semibold mb-1" style={{ color: getColor(cap.score) }}>{cap.he}</h3>
-              <p className="text-[10px] text-text-dim mb-2">{cap.prompt}</p>
-              <div className="text-2xl font-bold font-mono" style={{ color: getColor(cap.score) }}>{cap.score}</div>
-              {cap.extra && <p className="text-xs text-text-secondary mt-1">זמן התאוששות: {cap.extra}</p>}
+            <div key={cap.key} className="rounded-lg p-4 text-center" style={{ backgroundColor: 'var(--bg)' }}>
+              <h3 className="text-base font-semibold mb-1" style={{ color: getColor(cap.score) }}>{cap.he}</h3>
+              <p className="text-xs mb-2" style={{ color: 'var(--text-dim)' }}>{cap.prompt}</p>
+              <div className="text-3xl font-bold font-mono" style={{ color: getColor(cap.score) }}>{cap.score}</div>
+              {cap.extra && <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>זמן התאוששות: {cap.extra}</p>}
             </div>
           ))}
         </div>
       </div>
 
       {/* Social & Team Contribution */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-6 mb-6">
-        <h2 className="text-base font-semibold mb-4">רכיב חברתי וצוותי</h2>
+      <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-4">רכיב חברתי וצוותי</h2>
         <div className="space-y-4">
           {[
             { label: 'לכידות קבוצה', value: 72, desc: 'האם הצוער תמך באחרים?' },
@@ -110,18 +110,18 @@ const SimulationSummary: React.FC = () => {
             { label: 'ציון תמיכה חברתית', value: 75, desc: 'תמיכה חברתית כגורם חוסן קריטי' },
           ].map(item => (
             <div key={item.label}>
-              <div className="flex justify-between text-xs mb-1">
+              <div className="flex justify-between text-sm mb-1">
                 <div>
-                  <span className="text-text-primary font-medium">{item.label}</span>
-                  <span className="text-text-dim mr-2">- {item.desc}</span>
+                  <span className="font-medium" style={{ color: 'var(--text-primary)' }}>{item.label}</span>
+                  <span className="mr-2" style={{ color: 'var(--text-dim)' }}>- {item.desc}</span>
                 </div>
                 <span className="font-mono font-bold text-idf-green">{item.value}%</span>
               </div>
-              <div className="h-3 bg-dark-bg rounded-full overflow-hidden relative">
+              <div className="h-3 rounded-full overflow-hidden relative" style={{ backgroundColor: 'var(--bg)' }}>
                 <div className="h-full rounded-full bg-gradient-to-l from-idf-green/80 to-idf-green/40 transition-all duration-700" style={{ width: `${item.value}%` }} />
                 <div className="absolute inset-y-0 flex items-center w-full px-1">
-                  {['נמוך', 'בינוני', 'גבוה', 'יוצא דופן'].map((level, i) => (
-                    <span key={level} className="text-[8px] text-text-dim flex-1 text-center">{level}</span>
+                  {['נמוך', 'בינוני', 'גבוה', 'יוצא דופן'].map((level) => (
+                    <span key={level} className="text-xs flex-1 text-center" style={{ color: 'var(--text-dim)' }}>{level}</span>
                   ))}
                 </div>
               </div>
@@ -131,27 +131,27 @@ const SimulationSummary: React.FC = () => {
       </div>
 
       {/* Personal Improvement Snapshot */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-6 mb-6">
-        <h2 className="text-base font-semibold mb-4">תמונת שיפור אישית</h2>
+      <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-4">תמונת שיפור אישית</h2>
         <div className="grid grid-cols-3 gap-4">
           {comparisonMetrics.map(m => {
             const improved = m.label === 'זמן תגובה' ? m.current < m.baseline : m.current > m.baseline;
             return (
               <div key={m.label} className="text-center">
-                <h4 className="text-xs text-text-secondary mb-3">{m.label}</h4>
+                <h4 className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>{m.label}</h4>
                 <div className="flex items-end justify-center gap-3 h-24">
                   <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-text-dim mb-1">{m.baseline}{m.unit}</span>
-                    <div className="w-10 bg-text-dim/20 rounded-t" style={{ height: `${(m.baseline / (Math.max(m.baseline, m.current) * 1.3)) * 80}px` }} />
-                    <span className="text-[10px] text-text-dim mt-1">בסיס</span>
+                    <span className="text-xs mb-1" style={{ color: 'var(--text-dim)' }}>{m.baseline}{m.unit}</span>
+                    <div className="w-10 rounded-t" style={{ height: `${(m.baseline / (Math.max(m.baseline, m.current) * 1.3)) * 80}px`, backgroundColor: 'var(--text-dim)', opacity: 0.2 }} />
+                    <span className="text-xs mt-1" style={{ color: 'var(--text-dim)' }}>בסיס</span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-[10px] text-idf-green mb-1">{m.current}{m.unit}</span>
+                    <span className="text-xs text-idf-green mb-1">{m.current}{m.unit}</span>
                     <div className="w-10 rounded-t" style={{
                       height: `${(m.current / (Math.max(m.baseline, m.current) * 1.3)) * 80}px`,
                       backgroundColor: improved ? '#00E5A0' : '#FF4D6A',
                     }} />
-                    <span className="text-[10px] text-text-dim mt-1">נוכחי</span>
+                    <span className="text-xs mt-1" style={{ color: 'var(--text-dim)' }}>נוכחי</span>
                   </div>
                 </div>
               </div>
@@ -161,27 +161,27 @@ const SimulationSummary: React.FC = () => {
       </div>
 
       {/* Commander Recommendations */}
-      <div className="bg-dark-surface border border-idf-blue/20 rounded-[14px] p-6">
-        <h2 className="text-base font-semibold mb-4 text-idf-blue">המלצות ממוקדות</h2>
+      <div className="rounded-[14px] p-6" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'rgba(56,189,248,0.2)' }}>
+        <h2 className="text-lg font-semibold mb-4 text-idf-blue">המלצות ממוקדות</h2>
         <div className="space-y-3">
           {[
             { text: 'תרגול טכניקת נשימה מובנית לפני כניסה לסימולציה - ויסות גופני ורגשי', type: 'ויסות' },
             { text: 'שיפור זמני תגובה בתרחישי החלטה טקטית - מקצועיות מגבירה שליטה וביטחון', type: 'מקצועיות' },
             { text: 'תרחיש מומלץ הבא: ניווט לילי - להעמקת הסתגלות בתנאי ראות מוגבלת', type: 'תרחיש' },
           ].map((rec, i) => (
-            <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-dark-bg">
-              <div className="w-6 h-6 rounded-full bg-idf-blue/20 flex items-center justify-center text-idf-blue text-xs font-bold flex-shrink-0">
+            <div key={i} className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: 'var(--bg)' }}>
+              <div className="w-6 h-6 rounded-full bg-idf-blue/20 flex items-center justify-center text-idf-blue text-sm font-bold flex-shrink-0">
                 {i + 1}
               </div>
               <div>
-                <span className="badge bg-idf-blue/[0.13] text-idf-blue border-idf-blue/20 text-[10px] mb-1 inline-block">{rec.type}</span>
-                <p className="text-xs text-text-primary leading-relaxed">{rec.text}</p>
+                <span className="badge bg-idf-blue/[0.13] text-idf-blue border-idf-blue/20 text-xs mb-1 inline-block">{rec.type}</span>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{rec.text}</p>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-4 p-3 rounded-lg bg-idf-green/5 border border-idf-green/10 text-center">
-          <p className="text-xs text-idf-green">המפגש הנוכחי מהווה חלק מתהליך צמיחה מתמשך - שיפור עקבי נצפה לאורך 12 המפגשים האחרונים</p>
+          <p className="text-sm text-idf-green">המפגש הנוכחי מהווה חלק מתהליך צמיחה מתמשך - שיפור עקבי נצפה לאורך 12 המפגשים האחרונים</p>
         </div>
       </div>
     </div>

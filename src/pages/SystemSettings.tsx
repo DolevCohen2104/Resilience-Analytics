@@ -18,11 +18,11 @@ const SystemSettings: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">הגדרות מערכת</h1>
+        <h1 className="text-3xl font-bold">הגדרות מערכת</h1>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-dark-border mb-6">
+      <div className="flex gap-1 mb-6" style={{ borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: 'var(--border)' }}>
         {settingsTabs.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
             className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}>{tab.label}</button>
@@ -47,8 +47,8 @@ const SystemSettings: React.FC = () => {
                       </div>
                     )}
                     <div>
-                      <h3 className="text-sm font-semibold">{sensor.nameHe}</h3>
-                      <p className="text-[10px] text-text-dim">{sensor.name}</p>
+                      <h3 className="text-base font-semibold">{sensor.nameHe}</h3>
+                      <p className="text-xs" style={{ color: 'var(--text-dim)' }}>{sensor.name}</p>
                     </div>
                   </div>
                   <span className={`badge ${
@@ -60,22 +60,22 @@ const SystemSettings: React.FC = () => {
                   </span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-dark-bg rounded-lg p-3">
-                    <p className="text-[10px] text-text-dim">כיול אחרון</p>
-                    <p className="text-xs font-mono font-medium">{sensor.lastCalibration}</p>
+                  <div className="rounded-lg p-3" style={{ backgroundColor: 'var(--bg)' }}>
+                    <p className="text-xs" style={{ color: 'var(--text-dim)' }}>כיול אחרון</p>
+                    <p className="text-sm font-mono font-medium">{sensor.lastCalibration}</p>
                   </div>
-                  <div className="bg-dark-bg rounded-lg p-3">
-                    <p className="text-[10px] text-text-dim">דיוק</p>
-                    <p className={`text-xs font-mono font-bold ${sensor.accuracy > 90 ? 'text-idf-green' : sensor.accuracy > 0 ? 'text-idf-orange' : 'text-idf-red'}`}>
+                  <div className="rounded-lg p-3" style={{ backgroundColor: 'var(--bg)' }}>
+                    <p className="text-xs" style={{ color: 'var(--text-dim)' }}>דיוק</p>
+                    <p className={`text-sm font-mono font-bold ${sensor.accuracy > 90 ? 'text-idf-green' : sensor.accuracy > 0 ? 'text-idf-orange' : 'text-idf-red'}`}>
                       {sensor.accuracy > 0 ? `${sensor.accuracy}%` : 'N/A'}
                     </p>
                   </div>
                 </div>
                 <div className="flex gap-2 mt-4">
-                  <button className="flex-1 flex items-center justify-center gap-1 bg-dark-bg border border-dark-border rounded-lg py-2 text-xs text-text-secondary hover:border-idf-blue/50 transition-colors">
+                  <button className="flex-1 flex items-center justify-center gap-1 rounded-lg py-2 text-sm border transition-colors hover:border-idf-blue/50" style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text-secondary)' }}>
                     בדיקת חיבור
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-1 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg py-2 text-xs font-medium hover:bg-idf-blue/20 transition-colors">
+                  <button className="flex-1 flex items-center justify-center gap-1 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg py-2 text-sm font-medium hover:bg-idf-blue/20 transition-colors">
                     כיול מחדש
                   </button>
                 </div>
@@ -87,23 +87,26 @@ const SystemSettings: React.FC = () => {
 
       {/* Alert Thresholds */}
       {activeTab === 'thresholds' && (
-        <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-          <h2 className="text-base font-semibold mb-4">הגדרת ספי התראות</h2>
+        <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+          <h2 className="text-lg font-semibold mb-4">הגדרת ספי התראות</h2>
           <table className="w-full text-right">
             <thead>
-              <tr className="bg-dark-hover">
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מדד</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">יחידה</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">אזהרה (צהוב)</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">קריטי (אדום)</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">פעולה</th>
+              <tr style={{ backgroundColor: 'var(--hover)' }}>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מדד</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>יחידה</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>אזהרה (צהוב)</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>קריטי (אדום)</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>פעולה</th>
               </tr>
             </thead>
             <tbody>
               {thresholdSettings.map((setting, i) => (
-                <tr key={setting.metric} className={`border-b border-dark-border ${i % 2 === 1 ? 'bg-dark-zebra' : ''}`}>
-                  <td className="px-4 py-3 text-sm font-medium">{setting.metricHe}</td>
-                  <td className="px-4 py-3 text-sm font-mono text-text-dim">{setting.unit}</td>
+                <tr key={setting.metric} style={{
+                  borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: 'var(--border)',
+                  backgroundColor: i % 2 === 1 ? 'var(--zebra)' : undefined,
+                }}>
+                  <td className="px-4 py-3 text-base font-medium">{setting.metricHe}</td>
+                  <td className="px-4 py-3 text-base font-mono" style={{ color: 'var(--text-dim)' }}>{setting.unit}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <input
@@ -113,7 +116,7 @@ const SystemSettings: React.FC = () => {
                         defaultValue={setting.warningValue}
                         className="w-20 accent-idf-orange"
                       />
-                      <span className="text-sm font-mono text-idf-orange w-12">{setting.warningValue}</span>
+                      <span className="text-base font-mono text-idf-orange w-12">{setting.warningValue}</span>
                     </div>
                   </td>
                   <td className="px-4 py-3">
@@ -125,16 +128,16 @@ const SystemSettings: React.FC = () => {
                         defaultValue={setting.criticalValue}
                         className="w-20 accent-idf-red"
                       />
-                      <span className="text-sm font-mono text-idf-red w-12">{setting.criticalValue}</span>
+                      <span className="text-base font-mono text-idf-red w-12">{setting.criticalValue}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-xs text-text-secondary">{setting.actionHe}</td>
+                  <td className="px-4 py-3 text-sm" style={{ color: 'var(--text-secondary)' }}>{setting.actionHe}</td>
                 </tr>
               ))}
             </tbody>
           </table>
           <div className="flex justify-end mt-4">
-            <button className="bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-6 py-2 text-sm font-medium hover:bg-idf-blue/20 transition-colors">
+            <button className="bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-6 py-2 text-base font-medium hover:bg-idf-blue/20 transition-colors">
               שמירת שינויים
             </button>
           </div>
@@ -143,29 +146,32 @@ const SystemSettings: React.FC = () => {
 
       {/* Permissions */}
       {activeTab === 'permissions' && (
-        <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+        <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-4">
             <RiShieldUserLine className="text-idf-purple text-lg" />
-            <h2 className="text-base font-semibold">מטריצת הרשאות (RBAC)</h2>
+            <h2 className="text-lg font-semibold">מטריצת הרשאות (RBAC)</h2>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-right">
               <thead>
-                <tr className="bg-dark-hover">
-                  <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">תפקיד</th>
-                  <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">לוח מחוונים</th>
-                  <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">פרופיל צוער</th>
-                  <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">סימולציות</th>
-                  <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">אנליטיקס</th>
-                  <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">הגדרות</th>
+                <tr style={{ backgroundColor: 'var(--hover)' }}>
+                  <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>תפקיד</th>
+                  <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>לוח מחוונים</th>
+                  <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>פרופיל צוער</th>
+                  <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>סימולציות</th>
+                  <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>אנליטיקס</th>
+                  <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>הגדרות</th>
                 </tr>
               </thead>
               <tbody>
                 {roles.map((role, i) => (
-                  <tr key={role.role} className={`border-b border-dark-border ${i % 2 === 1 ? 'bg-dark-zebra' : ''}`}>
+                  <tr key={role.role} style={{
+                    borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: 'var(--border)',
+                    backgroundColor: i % 2 === 1 ? 'var(--zebra)' : undefined,
+                  }}>
                     <td className="px-4 py-3">
-                      <div className="text-sm font-medium">{role.roleHe}</div>
-                      <div className="text-[10px] text-text-dim">{role.role}</div>
+                      <div className="text-base font-medium">{role.roleHe}</div>
+                      <div className="text-xs" style={{ color: 'var(--text-dim)' }}>{role.role}</div>
                     </td>
                     {[role.dashboard, role.cadetProfile, role.simulations, role.analytics, role.settings].map((perm, j) => (
                       <td key={j} className="px-4 py-3">
@@ -174,7 +180,7 @@ const SystemSettings: React.FC = () => {
                         ) : perm === 'none' ? (
                           <span className="badge bg-text-dim/[0.13] text-text-dim border-text-dim/20">--</span>
                         ) : (
-                          <span className="badge bg-idf-blue/[0.13] text-idf-blue border-idf-blue/20 text-[9px]">{perm}</span>
+                          <span className="badge bg-idf-blue/[0.13] text-idf-blue border-idf-blue/20 text-xs">{perm}</span>
                         )}
                       </td>
                     ))}
@@ -225,17 +231,17 @@ const SystemSettings: React.FC = () => {
                     <integration.icon className="text-xl text-idf-blue" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold">{integration.titleHe}</h3>
-                    <p className="text-[10px] text-text-dim">{integration.title}</p>
+                    <h3 className="text-base font-semibold">{integration.titleHe}</h3>
+                    <p className="text-xs" style={{ color: 'var(--text-dim)' }}>{integration.title}</p>
                   </div>
                 </div>
                 <span className="badge bg-idf-green/[0.13] text-idf-green border-idf-green/20">מחובר</span>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {integration.fields.map(f => (
-                  <div key={f.label} className="bg-dark-bg rounded-lg p-3">
-                    <p className="text-[10px] text-text-dim">{f.label}</p>
-                    <p className="text-xs font-mono font-medium text-text-primary">{f.value}</p>
+                  <div key={f.label} className="rounded-lg p-3" style={{ backgroundColor: 'var(--bg)' }}>
+                    <p className="text-xs" style={{ color: 'var(--text-dim)' }}>{f.label}</p>
+                    <p className="text-sm font-mono font-medium" style={{ color: 'var(--text-primary)' }}>{f.value}</p>
                   </div>
                 ))}
               </div>

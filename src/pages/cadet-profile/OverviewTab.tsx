@@ -40,11 +40,11 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
             <div key={card.label} className="stat-card">
               <div className="flex items-center gap-2 mb-3">
                 <card.icon className="text-idf-blue text-lg" />
-                <span className="text-xs text-text-secondary font-medium">{card.label}</span>
+                <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{card.label}</span>
               </div>
               <div className="flex items-end gap-2 mb-2">
-                <span className="text-2xl font-bold font-mono text-text-primary">{card.value}</span>
-                <span className="text-xs text-text-dim mb-1">{card.unit}</span>
+                <span className="text-2xl font-bold font-mono" style={{ color: 'var(--text-primary)' }}>{card.value}</span>
+                <span className="text-xs mb-1" style={{ color: 'var(--text-dim)' }}>{card.unit}</span>
               </div>
               <div className="h-16">
                 <ResponsiveContainer width="100%" height="100%">
@@ -63,16 +63,16 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
       </div>
 
       {/* Radar Chart */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-2">רדאר חמישה מרכיבי חוסן</h2>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-2">רדאר חמישה מרכיבי חוסן</h2>
         <RadarChart data={radarData} size="large" />
       </div>
 
       {/* Timeline */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-6">ציר זמן - אבני דרך</h2>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-6">ציר זמן - אבני דרך</h2>
         <div className="relative">
-          <div className="absolute top-4 right-4 left-4 h-0.5 bg-dark-border" />
+          <div className="absolute top-4 right-4 left-4 h-0.5" style={{ backgroundColor: 'var(--border)' }} />
           <div className="flex justify-between relative">
             {timelineEvents.map((event) => (
               <div key={event.id} className="flex flex-col items-center group cursor-pointer" style={{ width: `${100 / timelineEvents.length}%` }}>
@@ -80,8 +80,8 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
                   {event.session}
                 </div>
                 <div className="mt-3 text-center">
-                  <p className="text-[10px] font-semibold text-text-primary">{event.labelHe}</p>
-                  <p className="text-[9px] text-text-dim mt-0.5 max-w-[120px] mx-auto opacity-0 group-hover:opacity-100 transition-opacity">{event.detail}</p>
+                  <p className="text-xs font-semibold" style={{ color: 'var(--text-primary)' }}>{event.labelHe}</p>
+                  <p className="text-xs mt-0.5 max-w-[120px] mx-auto opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: 'var(--text-dim)' }}>{event.detail}</p>
                 </div>
               </div>
             ))}

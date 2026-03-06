@@ -3,6 +3,7 @@ import {
   AreaChart, Area, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, ReferenceArea
 } from 'recharts';
+import { useChartTheme } from '../../useChartTheme';
 import { Cadet, cadetSessionHistory } from '../../data/mockData';
 
 interface Props { cadet: Cadet; }
@@ -33,6 +34,8 @@ const adaptationData = cadetSessionHistory.map((s, i) => ({
 }));
 
 const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
+  const ct = useChartTheme();
+
   const sections = [
     {
       title: 'עמידה (Withstanding)',
@@ -64,7 +67,7 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
             <div key={s.title} className="stat-card text-center">
               <div className="relative w-16 h-16 mx-auto mb-3">
                 <svg className="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
-                  <circle cx="32" cy="32" r="28" fill="none" stroke="#1E293B" strokeWidth="3" />
+                  <circle cx="32" cy="32" r="28" fill="none" stroke={ct.gridColor} strokeWidth="3" />
                   <circle cx="32" cy="32" r="28" fill="none" stroke={color} strokeWidth="3" strokeLinecap="round"
                     strokeDasharray={`${(s.score / 100) * 176} 176`} />
                 </svg>
@@ -72,42 +75,42 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
                   <span className="text-lg font-bold font-mono" style={{ color }}>{s.score}</span>
                 </div>
               </div>
-              <h3 className="text-sm font-semibold mb-1">{s.title}</h3>
-              <p className="text-xs text-text-dim">{s.titleHe}</p>
+              <h3 className="text-base font-semibold mb-1">{s.title}</h3>
+              <p className="text-sm" style={{ color: 'var(--text-dim)' }}>{s.titleHe}</p>
             </div>
           );
         })}
       </div>
 
       {/* Withstanding Chart */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-1">עמידה - יציבות ביצוע תחת לחץ</h2>
-        <p className="text-xs text-text-dim mb-4">% הזמן שמירה על תפקוד אפקטיבי בשיא הלחץ</p>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-1">עמידה - יציבות ביצוע תחת לחץ</h2>
+        <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>% הזמן שמירה על תפקוד אפקטיבי בשיא הלחץ</p>
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={withstandingData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+            <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
             {zoneColors.map(z => (
               <ReferenceArea key={z.y1} y1={z.y1} y2={z.y2} fill={z.fill} fillOpacity={0.03} />
             ))}
-            <XAxis dataKey="session" stroke="#64748B" tick={{ fontSize: 11 }} />
-            <YAxis stroke="#64748B" tick={{ fontSize: 11 }} domain={[0, 100]} />
-            <Tooltip contentStyle={{ backgroundColor: '#1A2332', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }} />
-            <Line type="monotone" dataKey="unitAvg" name="ממוצע יחידה" stroke="#64748B" strokeDasharray="5 5" strokeWidth={1} dot={false} />
+            <XAxis dataKey="session" stroke={ct.axisColor} tick={{ fontSize: 12 }} />
+            <YAxis stroke={ct.axisColor} tick={{ fontSize: 12 }} domain={[0, 100]} />
+            <Tooltip contentStyle={ct.tooltipStyle} />
+            <Line type="monotone" dataKey="unitAvg" name="ממוצע יחידה" stroke={ct.axisColor} strokeDasharray="5 5" strokeWidth={1} dot={false} />
             <Area type="monotone" dataKey="score" name="עמידה" stroke="#38BDF8" fill="#38BDF8" fillOpacity={0.15} strokeWidth={2} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
 
       {/* Recovery Chart */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-1">התאוששות - זמן חזרה לתפקוד</h2>
-        <p className="text-xs text-text-dim mb-4">מגמה יורדת = שיפור</p>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-1">התאוששות - זמן חזרה לתפקוד</h2>
+        <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>מגמה יורדת = שיפור</p>
         <ResponsiveContainer width="100%" height={250}>
           <LineChart data={recoveryData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-            <XAxis dataKey="session" stroke="#64748B" tick={{ fontSize: 11 }} />
-            <YAxis stroke="#64748B" tick={{ fontSize: 11 }} domain={[0, 12]} unit="s" />
-            <Tooltip contentStyle={{ backgroundColor: '#1A2332', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }} />
+            <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
+            <XAxis dataKey="session" stroke={ct.axisColor} tick={{ fontSize: 12 }} />
+            <YAxis stroke={ct.axisColor} tick={{ fontSize: 12 }} domain={[0, 12]} unit="s" />
+            <Tooltip contentStyle={ct.tooltipStyle} />
             <Line type="monotone" dataKey="time" name="זמן התאוששות" stroke="#00E5A0" strokeWidth={2} dot={{ r: 4, fill: '#00E5A0' }} />
           </LineChart>
         </ResponsiveContainer>
@@ -117,8 +120,8 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
             { label: 'הטוב ביותר', value: `${Math.min(...recoveryData.map(d => d.time)).toFixed(1)}s` },
             { label: 'הגרוע ביותר', value: `${Math.max(...recoveryData.map(d => d.time)).toFixed(1)}s` },
           ].map(m => (
-            <div key={m.label} className="text-center bg-dark-bg rounded-lg p-3">
-              <div className="text-xs text-text-dim">{m.label}</div>
+            <div key={m.label} className="text-center rounded-lg p-3" style={{ backgroundColor: 'var(--bg)' }}>
+              <div className="text-sm" style={{ color: 'var(--text-dim)' }}>{m.label}</div>
               <div className="text-lg font-bold font-mono text-idf-green">{m.value}</div>
             </div>
           ))}
@@ -126,18 +129,18 @@ const CapabilitiesTab: React.FC<Props> = ({ cadet }) => {
       </div>
 
       {/* Adaptation Chart */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-1">הסתגלות - תגובה לשינויים באמצע משימה</h2>
-        <p className="text-xs text-text-dim mb-4">ציון הסתגלות כאשר פרמטרי התרחיש משתנים באופן בלתי צפוי</p>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-1">הסתגלות - תגובה לשינויים באמצע משימה</h2>
+        <p className="text-sm mb-4" style={{ color: 'var(--text-dim)' }}>ציון הסתגלות כאשר פרמטרי התרחיש משתנים באופן בלתי צפוי</p>
         <ResponsiveContainer width="100%" height={250}>
           <AreaChart data={adaptationData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+            <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
             {zoneColors.map(z => (
               <ReferenceArea key={z.y1} y1={z.y1} y2={z.y2} fill={z.fill} fillOpacity={0.03} />
             ))}
-            <XAxis dataKey="session" stroke="#64748B" tick={{ fontSize: 11 }} />
-            <YAxis stroke="#64748B" tick={{ fontSize: 11 }} domain={[0, 100]} />
-            <Tooltip contentStyle={{ backgroundColor: '#1A2332', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }} />
+            <XAxis dataKey="session" stroke={ct.axisColor} tick={{ fontSize: 12 }} />
+            <YAxis stroke={ct.axisColor} tick={{ fontSize: 12 }} domain={[0, 100]} />
+            <Tooltip contentStyle={ct.tooltipStyle} />
             <Area type="monotone" dataKey="score" name="הסתגלות" stroke="#A78BFA" fill="#A78BFA" fillOpacity={0.15} strokeWidth={2} />
           </AreaChart>
         </ResponsiveContainer>

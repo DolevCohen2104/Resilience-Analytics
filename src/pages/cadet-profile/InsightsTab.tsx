@@ -43,69 +43,71 @@ const InsightsTab: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Automated Insights */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
           <RiLightbulbLine className="text-idf-orange text-lg" />
-          <h2 className="text-base font-semibold">תובנות אוטומטיות</h2>
+          <h2 className="text-lg font-semibold">תובנות אוטומטיות</h2>
         </div>
         <div className="space-y-3">
           {insightsData.map(insight => (
-            <div key={insight.id} className="flex items-start gap-3 p-3 rounded-lg bg-dark-bg border border-dark-border">
+            <div key={insight.id} className="flex items-start gap-3 p-3 rounded-lg" style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
               <div className={`glow-dot mt-1.5 flex-shrink-0 ${
                 insight.type === 'pattern' ? 'bg-idf-blue shadow-[0_0_8px_rgba(56,189,248,0.5)]' :
                 insight.type === 'improvement' ? 'bg-idf-green shadow-[0_0_8px_rgba(0,229,160,0.5)]' :
                 'bg-idf-red shadow-[0_0_8px_rgba(255,77,106,0.5)]'
               }`} />
-              <p className="text-xs text-text-primary leading-relaxed">{insight.textHe}</p>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{insight.textHe}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Commander Notes */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <RiStickyNoteLine className="text-idf-purple text-lg" />
-            <h2 className="text-base font-semibold">הערות מפקד</h2>
+            <h2 className="text-lg font-semibold">הערות מפקד</h2>
           </div>
           <div className="relative">
-            <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-text-dim text-sm" />
+            <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: 'var(--text-dim)' }} />
             <input
               type="text"
               placeholder="חיפוש בהערות..."
-              className="bg-dark-bg border border-dark-border rounded-lg pr-8 pl-3 py-1.5 text-xs text-text-primary placeholder-text-dim focus:outline-none focus:border-idf-blue/50 w-40"
+              className="rounded-lg pr-8 pl-3 py-1.5 text-sm focus:outline-none focus:border-idf-blue/50 w-40"
+              style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)', color: 'var(--text-primary)' }}
             />
           </div>
         </div>
         <div className="space-y-3">
           {commanderNotes.map(note => (
-            <div key={note.id} className="p-4 rounded-lg bg-dark-bg border border-dark-border">
+            <div key={note.id} className="p-4 rounded-lg" style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
               <div className="flex items-center gap-2 mb-2">
                 <span className={`badge ${tagColors[note.tag]}`}>{tagLabels[note.tag]}</span>
-                <span className="text-[10px] text-text-dim">{note.author}</span>
-                <span className="text-[10px] text-text-dim mr-auto">{note.timestamp}</span>
+                <span className="text-xs" style={{ color: 'var(--text-dim)' }}>{note.author}</span>
+                <span className="text-xs mr-auto" style={{ color: 'var(--text-dim)' }}>{note.timestamp}</span>
               </div>
-              <p className="text-xs text-text-primary leading-relaxed">{note.textHe}</p>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{note.textHe}</p>
             </div>
           ))}
         </div>
         <textarea
           placeholder="הוסף הערה חדשה..."
-          className="w-full mt-4 bg-dark-bg border border-dark-border rounded-lg p-3 text-xs text-text-primary placeholder-text-dim focus:outline-none focus:border-idf-blue/50 resize-none h-20"
+          className="w-full mt-4 rounded-lg p-3 text-sm focus:outline-none focus:border-idf-blue/50 resize-none h-20"
+          style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)', color: 'var(--text-primary)' }}
         />
       </div>
 
       {/* Training Recommendations */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
           <RiCheckboxCircleLine className="text-idf-green text-lg" />
-          <h2 className="text-base font-semibold">המלצות אימון</h2>
+          <h2 className="text-lg font-semibold">המלצות אימון</h2>
         </div>
         <div className="space-y-3">
           {recommendationsData.map(rec => (
-            <div key={rec.id} className="flex items-center justify-between p-3 rounded-lg bg-dark-bg border border-dark-border">
-              <p className="text-xs text-text-primary">{rec.textHe}</p>
+            <div key={rec.id} className="flex items-center justify-between p-3 rounded-lg" style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+              <p className="text-sm" style={{ color: 'var(--text-primary)' }}>{rec.textHe}</p>
               <span className={`badge ${statusColors[rec.status]}`}>{statusLabels[rec.status]}</span>
             </div>
           ))}
@@ -113,22 +115,22 @@ const InsightsTab: React.FC = () => {
       </div>
 
       {/* Development Targets */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center gap-2 mb-4">
           <RiFlag2Line className="text-idf-blue text-lg" />
-          <h2 className="text-base font-semibold">יעדי פיתוח</h2>
+          <h2 className="text-lg font-semibold">יעדי פיתוח</h2>
         </div>
         <div className="space-y-4">
           {devTargets.map(target => (
-            <div key={target.component} className="p-4 rounded-lg bg-dark-bg border border-dark-border">
+            <div key={target.component} className="p-4 rounded-lg" style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
               <div className="flex items-center justify-between mb-2">
                 <div>
-                  <span className="text-xs font-semibold text-text-primary">{target.component}</span>
-                  <p className="text-[10px] text-text-dim mt-0.5">{target.target}</p>
+                  <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>{target.component}</span>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-dim)' }}>{target.target}</p>
                 </div>
-                <span className="text-sm font-bold font-mono" style={{ color: target.color }}>{target.progress}%</span>
+                <span className="text-base font-bold font-mono" style={{ color: target.color }}>{target.progress}%</span>
               </div>
-              <div className="h-2 bg-dark-surface rounded-full overflow-hidden">
+              <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--surface)' }}>
                 <div
                   className="h-full rounded-full transition-all duration-700"
                   style={{ width: `${target.progress}%`, backgroundColor: target.color }}

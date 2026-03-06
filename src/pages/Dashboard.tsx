@@ -10,12 +10,14 @@ import {
 } from 'react-icons/ri';
 import StatCard from '../components/StatCard';
 import RadarChart from '../components/RadarChart';
+import { useChartTheme } from '../useChartTheme';
 import {
   cadets, sessionTrendData, activityFeed, sectorLabels, riskLabels, componentLabels
 } from '../data/mockData';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
+  const chartTheme = useChartTheme();
   const [timeRange, setTimeRange] = useState<'week' | 'month' | 'quarter' | 'all'>('all');
 
   const atRiskCadets = cadets
@@ -50,8 +52,11 @@ const Dashboard: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">Command Dashboard - לוח מפקד</h1>
-        <button className="flex items-center gap-2 text-xs text-text-secondary bg-dark-surface border border-dark-border rounded-lg px-3 py-2 hover:border-idf-blue/50 transition-colors">
+        <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>Command Dashboard - לוח מפקד</h1>
+        <button
+          className="flex items-center gap-2 text-sm font-medium rounded-lg px-3 py-2 transition-colors"
+          style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}
+        >
           <RiDownloadLine /> Export
         </button>
       </div>
@@ -71,17 +76,18 @@ const Dashboard: React.FC = () => {
         {/* Left Column - 3/5 */}
         <div className="col-span-3 space-y-6">
           {/* Trend Chart */}
-          <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+          <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-semibold">מגמת חוסן לאורך זמן</h2>
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>מגמת חוסן לאורך זמן</h2>
               <div className="flex gap-1">
                 {(['week', 'month', 'quarter', 'all'] as const).map(range => (
                   <button
                     key={range}
                     onClick={() => setTimeRange(range)}
-                    className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
-                      timeRange === range ? 'bg-idf-blue/10 text-idf-blue' : 'text-text-dim hover:text-text-secondary'
+                    className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                      timeRange === range ? 'bg-idf-blue/10 text-idf-blue' : ''
                     }`}
+                    style={timeRange !== range ? { color: 'var(--text-dim)' } : undefined}
                   >
                     {range === 'week' ? 'שבוע' : range === 'month' ? 'חודש' : range === 'quarter' ? 'רבעון' : 'הכל'}
                   </button>
@@ -90,14 +96,14 @@ const Dashboard: React.FC = () => {
             </div>
             <ResponsiveContainer width="100%" height={280}>
               <AreaChart data={sessionTrendData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-                <XAxis dataKey="session" stroke="#64748B" tick={{ fontSize: 11 }} label={{ value: 'מפגש', position: 'insideBottom', offset: -5, fill: '#64748B', fontSize: 11 }} />
-                <YAxis stroke="#64748B" tick={{ fontSize: 11 }} domain={[30, 85]} />
+                <CartesianGrid strokeDasharray="3 3" stroke={chartTheme.gridColor} />
+                <XAxis dataKey="session" stroke={chartTheme.axisColor} tick={{ fontSize: 12 }} label={{ value: 'מפגש', position: 'insideBottom', offset: -5, fill: chartTheme.axisColor, fontSize: 12 }} />
+                <YAxis stroke={chartTheme.axisColor} tick={{ fontSize: 12 }} domain={[30, 85]} />
                 <Tooltip
-                  contentStyle={{ backgroundColor: '#1A2332', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px', fontFamily: 'Heebo' }}
-                  labelStyle={{ color: '#94A3B8' }}
+                  contentStyle={chartTheme.tooltipStyle}
+                  labelStyle={{ color: chartTheme.labelColor }}
                 />
-                <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'Heebo' }} />
+                <Legend wrapperStyle={{ fontSize: '12px', fontFamily: 'Heebo' }} />
                 <Area type="monotone" dataKey="combatScore" name="קרבי" stroke="#FF4D6A" fill="#FF4D6A" fillOpacity={0.1} strokeWidth={2} />
                 <Area type="monotone" dataKey="commandScore" name='מטכ"לי' stroke="#38BDF8" fill="#38BDF8" fillOpacity={0.1} strokeWidth={2} />
                 <Area type="monotone" dataKey="institutionalScore" name="מוסדי" stroke="#00E5A0" fill="#00E5A0" fillOpacity={0.1} strokeWidth={2} />
@@ -106,28 +112,34 @@ const Dashboard: React.FC = () => {
           </div>
 
           {/* At Risk Table */}
-          <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+          <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-base font-semibold">צוערים הדורשים תשומת לב</h2>
-              <span className="text-xs text-text-dim">{atRiskCadets.length} צוערים</span>
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>צוערים הדורשים תשומת לב</h2>
+              <span className="text-sm" style={{ color: 'var(--text-dim)' }}>{atRiskCadets.length} צוערים</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-right">
                 <thead>
-                  <tr className="bg-dark-hover">
-                    <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מזהה</th>
-                    <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">זרוע</th>
-                    <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מפגשים</th>
-                    <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">ציון חוסן</th>
-                    <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מגמה</th>
-                    <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">רמת סיכון</th>
+                  <tr style={{ backgroundColor: 'var(--hover)' }}>
+                    <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מזהה</th>
+                    <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>זרוע</th>
+                    <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מפגשים</th>
+                    <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>ציון חוסן</th>
+                    <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מגמה</th>
+                    <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>רמת סיכון</th>
                   </tr>
                 </thead>
                 <tbody>
                   {atRiskCadets.map((cadet, i) => (
                     <tr
                       key={cadet.id}
-                      className={`border-b border-dark-border hover:bg-dark-hover cursor-pointer transition-colors ${i % 2 === 1 ? 'bg-dark-zebra' : ''}`}
+                      className="cursor-pointer transition-colors"
+                      style={{
+                        borderBottom: '1px solid var(--border)',
+                        backgroundColor: i % 2 === 1 ? 'var(--zebra)' : undefined,
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'var(--hover)')}
+                      onMouseLeave={e => (e.currentTarget.style.backgroundColor = i % 2 === 1 ? 'var(--zebra)' : '')}
                       onClick={() => navigate(`/cadet/${cadet.id}`)}
                     >
                       <td className="px-4 py-3 text-sm font-mono font-medium">{cadet.id}</td>
@@ -151,19 +163,22 @@ const Dashboard: React.FC = () => {
         {/* Right Column - 2/5 */}
         <div className="col-span-2 space-y-6">
           {/* Radar Chart */}
-          <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-            <h2 className="text-base font-semibold mb-2">רדאר חמישה מרכיבים - ממוצע יחידה</h2>
+          <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
+            <h2 className="text-lg font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>רדאר חמישה מרכיבים - ממוצע יחידה</h2>
             <RadarChart data={unitAvgComponents} />
           </div>
 
           {/* Activity Feed */}
-          <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-            <h2 className="text-base font-semibold mb-4">פעילות אחרונה</h2>
+          <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
+            <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>פעילות אחרונה</h2>
             <div className="space-y-3 max-h-[340px] overflow-y-auto">
               {activityFeed.map(event => (
                 <div
                   key={event.id}
-                  className="flex items-start gap-3 p-3 rounded-lg hover:bg-dark-hover cursor-pointer transition-colors"
+                  className="flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors"
+                  style={{ backgroundColor: 'transparent' }}
+                  onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'var(--hover)')}
+                  onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'transparent')}
                   onClick={() => event.cadetId && navigate(`/cadet/${event.cadetId}`)}
                 >
                   <div className={`glow-dot mt-1.5 flex-shrink-0 ${
@@ -173,8 +188,8 @@ const Dashboard: React.FC = () => {
                     'bg-idf-orange shadow-[0_0_8px_rgba(255,181,71,0.5)]'
                   }`} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-text-primary leading-relaxed">{event.messageHe}</p>
-                    <p className="text-[10px] text-text-dim mt-1">{event.timestamp}</p>
+                    <p className="text-sm leading-relaxed" style={{ color: 'var(--text-primary)' }}>{event.messageHe}</p>
+                    <p className="text-xs mt-1" style={{ color: 'var(--text-dim)' }}>{event.timestamp}</p>
                   </div>
                 </div>
               ))}

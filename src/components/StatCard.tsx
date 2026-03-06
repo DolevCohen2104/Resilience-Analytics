@@ -20,14 +20,14 @@ const StatCard: React.FC<StatCardProps> = ({ icon: Icon, label, value, trend, tr
   return (
     <div className="stat-card cursor-pointer" onClick={onClick}>
       <div className="flex items-center gap-2 mb-3">
-        <Icon className="text-idf-blue text-lg" />
-        <span className="text-xs text-text-secondary font-medium">{label}</span>
+        <Icon className="text-idf-blue text-xl" />
+        <span className="text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{label}</span>
       </div>
-      <div className="text-2xl font-bold text-text-primary font-mono">{value}</div>
+      <div className="text-3xl font-bold font-mono" style={{ color: 'var(--text-primary)' }}>{value}</div>
       {trend && (
         <div className={`flex items-center gap-1 mt-2 ${trendColor}`}>
-          <TrendIcon className="text-sm" />
-          <span className="text-xs font-medium">{trendValue}</span>
+          <TrendIcon className="text-base" />
+          <span className="text-sm font-medium">{trendValue}</span>
         </div>
       )}
     </div>

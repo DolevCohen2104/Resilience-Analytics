@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './ThemeContext';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import CadetProfile from './pages/CadetProfile';
@@ -11,19 +12,21 @@ import SystemSettings from './pages/SystemSettings';
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/cadet/:id" element={<CadetProfile />} />
-          <Route path="/simulation-summary" element={<SimulationSummary />} />
-          <Route path="/simulation-management" element={<SimulationManagement />} />
-          <Route path="/analytics" element={<AdvancedAnalytics />} />
-          <Route path="/commander" element={<CommanderView />} />
-          <Route path="/settings" element={<SystemSettings />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/cadet/:id" element={<CadetProfile />} />
+            <Route path="/simulation-summary" element={<SimulationSummary />} />
+            <Route path="/simulation-management" element={<SimulationManagement />} />
+            <Route path="/analytics" element={<AdvancedAnalytics />} />
+            <Route path="/commander" element={<CommanderView />} />
+            <Route path="/settings" element={<SystemSettings />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </ThemeProvider>
   );
 }
 

@@ -10,9 +10,11 @@ import {
 import StatCard from '../components/StatCard';
 import RadarChart from '../components/RadarChart';
 import { cadets, sectorLabels, riskLabels, componentLabels } from '../data/mockData';
+import { useChartTheme } from '../useChartTheme';
 
 const CommanderView: React.FC = () => {
   const navigate = useNavigate();
+  const ct = useChartTheme();
 
   const avgResilience = Math.round(cadets.reduce((s, c) => s + c.resilienceScore, 0) / cadets.length);
   const greenZone = cadets.filter(c => c.resilienceScore >= 70).length;
@@ -47,8 +49,8 @@ const CommanderView: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">תצוגת מפקד</h1>
-        <button className="flex items-center gap-2 text-xs text-text-secondary bg-dark-surface border border-dark-border rounded-lg px-3 py-2 hover:border-idf-blue/50 transition-colors">
+        <h1 className="text-3xl font-bold">תצוגת מפקד</h1>
+        <button className="flex items-center gap-2 text-sm rounded-lg px-3 py-2 border hover:border-idf-blue/50 transition-colors" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
           <RiDownloadLine /> הפקת דוח תקופתי
         </button>
       </div>
@@ -64,15 +66,15 @@ const CommanderView: React.FC = () => {
 
       <div className="grid grid-cols-2 gap-6 mb-6">
         {/* Resilience Distribution */}
-        <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-          <h2 className="text-base font-semibold mb-4">התפלגות חוסן לפי יחידת משנה</h2>
+        <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+          <h2 className="text-lg font-semibold mb-4">התפלגות חוסן לפי יחידת משנה</h2>
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={distributionData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-              <XAxis dataKey="unit" stroke="#64748B" tick={{ fontSize: 11, fontFamily: 'Heebo' }} />
-              <YAxis stroke="#64748B" tick={{ fontSize: 11 }} />
-              <Tooltip contentStyle={{ backgroundColor: '#1A2332', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }} />
-              <Legend wrapperStyle={{ fontSize: '11px', fontFamily: 'Heebo' }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
+              <XAxis dataKey="unit" stroke={ct.axisColor} tick={{ fontSize: 12, fontFamily: 'Heebo' }} />
+              <YAxis stroke={ct.axisColor} tick={{ fontSize: 12 }} />
+              <Tooltip contentStyle={ct.tooltipStyle} />
+              <Legend wrapperStyle={{ fontSize: '12px', fontFamily: 'Heebo' }} />
               <Bar dataKey="red" name="< 40" stackId="a" fill="#FF4D6A" />
               <Bar dataKey="orange" name="40-60" stackId="a" fill="#FFB547" />
               <Bar dataKey="green" name="60-80" stackId="a" fill="#00E5A0" />
@@ -82,57 +84,68 @@ const CommanderView: React.FC = () => {
         </div>
 
         {/* Unit Radar */}
-        <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-          <h2 className="text-base font-semibold mb-2">רדאר חמישה מרכיבים - ממוצע יחידה</h2>
+        <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+          <h2 className="text-lg font-semibold mb-2">רדאר חמישה מרכיבים - ממוצע יחידה</h2>
           <RadarChart data={unitRadar} size="large" />
         </div>
       </div>
 
       {/* Readiness Report Table */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-base font-semibold">דוח מוכנות</h2>
+          <h2 className="text-lg font-semibold">דוח מוכנות</h2>
           <div className="flex items-center gap-3">
             <div className="relative">
-              <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-text-dim text-sm" />
-              <input type="text" placeholder="חיפוש..." className="bg-dark-bg border border-dark-border rounded-lg pr-8 pl-3 py-1.5 text-xs text-text-primary placeholder-text-dim focus:outline-none focus:border-idf-blue/50 w-36" />
+              <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2 text-base" style={{ color: 'var(--text-dim)' }} />
+              <input
+                type="text"
+                placeholder="חיפוש..."
+                className="rounded-lg pr-8 pl-3 py-1.5 text-sm focus:outline-none w-36"
+                style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+              />
             </div>
-            <button className="flex items-center gap-1 text-xs text-text-secondary bg-dark-bg border border-dark-border rounded-lg px-3 py-1.5 hover:border-idf-blue/50">
-              <RiDownloadLine className="text-sm" /> Excel
+            <button className="flex items-center gap-1 text-sm rounded-lg px-3 py-1.5 border hover:border-idf-blue/50" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--bg)', borderColor: 'var(--border)' }}>
+              <RiDownloadLine className="text-base" /> Excel
             </button>
           </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-right">
             <thead>
-              <tr className="bg-dark-hover">
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מזהה צוער</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">זרוע</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מפגשים</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">ציון חוסן</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מגמה</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">רמת סיכון</th>
-                <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">פעולה נדרשת</th>
+              <tr style={{ backgroundColor: 'var(--hover)' }}>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מזהה צוער</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>זרוע</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מפגשים</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>ציון חוסן</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מגמה</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>רמת סיכון</th>
+                <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>פעולה נדרשת</th>
               </tr>
             </thead>
             <tbody>
               {cadets.map((cadet, i) => (
                 <tr
                   key={cadet.id}
-                  className={`border-b border-dark-border hover:bg-dark-hover cursor-pointer transition-colors ${i % 2 === 1 ? 'bg-dark-zebra' : ''}`}
+                  className="cursor-pointer transition-colors"
+                  style={{
+                    borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: 'var(--border)',
+                    backgroundColor: i % 2 === 1 ? 'var(--zebra)' : undefined,
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'var(--hover)')}
+                  onMouseLeave={e => (e.currentTarget.style.backgroundColor = i % 2 === 1 ? 'var(--zebra)' : '')}
                   onClick={() => navigate(`/cadet/${cadet.id}`)}
                 >
-                  <td className="px-4 py-3 text-sm font-mono font-medium">{cadet.id}</td>
+                  <td className="px-4 py-3 text-base font-mono font-medium">{cadet.id}</td>
                   <td className="px-4 py-3"><span className={`badge badge-${cadet.sector}`}>{sectorLabels[cadet.sector]}</span></td>
-                  <td className="px-4 py-3 text-sm font-mono">{cadet.totalSessions}</td>
+                  <td className="px-4 py-3 text-base font-mono">{cadet.totalSessions}</td>
                   <td className="px-4 py-3">
-                    <span className={`text-sm font-mono font-bold ${
+                    <span className={`text-base font-mono font-bold ${
                       cadet.resilienceScore < 40 ? 'text-idf-red' : cadet.resilienceScore < 60 ? 'text-idf-orange' : cadet.resilienceScore < 80 ? 'text-idf-green' : 'text-idf-blue'
                     }`}>{cadet.resilienceScore}</span>
                   </td>
                   <td className="px-4 py-3"><TrendArrow trend={cadet.trend} /></td>
                   <td className="px-4 py-3"><span className={`badge badge-risk-${cadet.riskLevel}`}>{riskLabels[cadet.riskLevel]}</span></td>
-                  <td className="px-4 py-3 text-xs text-text-secondary max-w-[200px]">
+                  <td className="px-4 py-3 text-sm max-w-[200px]" style={{ color: 'var(--text-secondary)' }}>
                     {cadet.riskLevel === 'high' ? 'נדרשת התערבות - מומלצת פגישה עם קצין מנטלי' :
                      cadet.riskLevel === 'medium' ? 'ניטור מוגבר - התמקדות בתרחישי התאוששות' :
                      'המשך אימון שגרתי'}

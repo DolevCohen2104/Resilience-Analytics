@@ -3,9 +3,11 @@ import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ZAxis, ReferenceLine
 } from 'recharts';
 import { RiArrowUpSLine, RiArrowRightSLine, RiEyeLine } from 'react-icons/ri';
+import { useChartTheme } from '../../useChartTheme';
 import { scenarioBreakdown } from '../../data/mockData';
 
 const ScenarioTab: React.FC = () => {
+  const ct = useChartTheme();
   const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
 
   const bubbleData = scenarioBreakdown.map(s => ({
@@ -24,45 +26,54 @@ const ScenarioTab: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Scenario Table */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-4">ביצועים לפי תרחיש</h2>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-4">ביצועים לפי תרחיש</h2>
         <table className="w-full text-right">
           <thead>
-            <tr className="bg-dark-hover">
-              <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">תרחיש</th>
-              <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">קושי</th>
-              <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">ביצוע</th>
-              <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מפגשים</th>
-              <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">מגמה</th>
-              <th className="px-4 py-2.5 text-xs font-semibold text-text-secondary">פעולה</th>
+            <tr style={{ backgroundColor: 'var(--hover)' }}>
+              <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>תרחיש</th>
+              <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>קושי</th>
+              <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>ביצוע</th>
+              <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מפגשים</th>
+              <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>מגמה</th>
+              <th className="px-4 py-2.5 text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>פעולה</th>
             </tr>
           </thead>
           <tbody>
             {scenarioBreakdown.map((s, i) => (
-              <tr key={s.name} className={`border-b border-dark-border hover:bg-dark-hover transition-colors ${i % 2 === 1 ? 'bg-dark-zebra' : ''}`}>
+              <tr
+                key={s.name}
+                className="transition-colors"
+                style={{
+                  borderBottom: '1px solid var(--border)',
+                  backgroundColor: i % 2 === 1 ? 'var(--zebra)' : undefined,
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--hover)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = i % 2 === 1 ? 'var(--zebra)' : ''; }}
+              >
                 <td className="px-4 py-3">
-                  <div className="text-sm font-medium">{s.nameHe}</div>
-                  <div className="text-[10px] text-text-dim">{s.name}</div>
+                  <div className="text-base font-medium">{s.nameHe}</div>
+                  <div className="text-xs" style={{ color: 'var(--text-dim)' }}>{s.name}</div>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-1">
-                    <div className="h-1.5 rounded-full bg-dark-bg w-20 overflow-hidden">
+                    <div className="h-1.5 rounded-full w-20 overflow-hidden" style={{ backgroundColor: 'var(--bg)' }}>
                       <div className="h-full rounded-full bg-idf-orange" style={{ width: `${s.difficulty}%` }} />
                     </div>
-                    <span className="text-xs font-mono text-text-dim">{s.difficulty}%</span>
+                    <span className="text-sm font-mono" style={{ color: 'var(--text-dim)' }}>{s.difficulty}%</span>
                   </div>
                 </td>
                 <td className="px-4 py-3">
-                  <span className={`text-sm font-mono font-bold ${s.performance >= 70 ? 'text-idf-green' : s.performance >= 50 ? 'text-idf-orange' : 'text-idf-red'}`}>
+                  <span className={`text-base font-mono font-bold ${s.performance >= 70 ? 'text-idf-green' : s.performance >= 50 ? 'text-idf-orange' : 'text-idf-red'}`}>
                     {s.performance}%
                   </span>
                 </td>
-                <td className="px-4 py-3 text-sm font-mono">{s.sessions}</td>
+                <td className="px-4 py-3 text-base font-mono">{s.sessions}</td>
                 <td className="px-4 py-3">{trendIcon(s.trend)}</td>
                 <td className="px-4 py-3">
                   <button
                     onClick={() => setSelectedScenario(s.name === selectedScenario ? null : s.name)}
-                    className="flex items-center gap-1 text-xs text-idf-blue hover:text-idf-blue/80 transition-colors"
+                    className="flex items-center gap-1 text-sm text-idf-blue hover:text-idf-blue/80 transition-colors"
                   >
                     <RiEyeLine /> פרטים
                   </button>
@@ -74,21 +85,21 @@ const ScenarioTab: React.FC = () => {
       </div>
 
       {/* Bubble Chart */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-5">
-        <h2 className="text-base font-semibold mb-4">מפת קושי-ביצועים</h2>
+      <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+        <h2 className="text-lg font-semibold mb-4">מפת קושי-ביצועים</h2>
         <ResponsiveContainer width="100%" height={320}>
           <ScatterChart>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
-            <XAxis dataKey="difficulty" name="קושי" stroke="#64748B" tick={{ fontSize: 11 }} domain={[50, 100]} unit="%" />
-            <YAxis dataKey="performance" name="ביצוע" stroke="#64748B" tick={{ fontSize: 11 }} domain={[40, 100]} unit="%" />
+            <CartesianGrid strokeDasharray="3 3" stroke={ct.gridColor} />
+            <XAxis dataKey="difficulty" name="קושי" stroke={ct.axisColor} tick={{ fontSize: 12 }} domain={[50, 100]} unit="%" />
+            <YAxis dataKey="performance" name="ביצוע" stroke={ct.axisColor} tick={{ fontSize: 12 }} domain={[40, 100]} unit="%" />
             <ZAxis dataKey="sessions" range={[100, 600]} />
             <Tooltip
-              contentStyle={{ backgroundColor: '#1A2332', border: '1px solid #334155', borderRadius: '8px', fontSize: '12px' }}
+              contentStyle={ct.tooltipStyle}
               formatter={(value: any, name: string) => [value, name === 'difficulty' ? 'קושי' : name === 'performance' ? 'ביצוע' : name]}
             />
             <ReferenceLine
               segment={[{ x: 50, y: 40 }, { x: 100, y: 100 }]}
-              stroke="#64748B"
+              stroke={ct.axisColor}
               strokeDasharray="5 5"
             />
             <Scatter data={bubbleData}>
@@ -99,39 +110,39 @@ const ScenarioTab: React.FC = () => {
           </ScatterChart>
         </ResponsiveContainer>
         <div className="flex items-center gap-6 justify-center mt-3">
-          <div className="flex items-center gap-2 text-xs text-text-dim">
+          <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-dim)' }}>
             <div className="w-3 h-3 rounded-full bg-idf-green" /> מגמת עלייה
           </div>
-          <div className="flex items-center gap-2 text-xs text-text-dim">
+          <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-dim)' }}>
             <div className="w-3 h-3 rounded-full bg-idf-orange" /> יציב
           </div>
-          <span className="text-[10px] text-text-dim">גודל הבועה = מספר מפגשים</span>
+          <span className="text-xs" style={{ color: 'var(--text-dim)' }}>גודל הבועה = מספר מפגשים</span>
         </div>
       </div>
 
       {/* Drill-down Panel */}
       {selectedScenario && (
-        <div className="bg-dark-surface border border-idf-blue/30 rounded-[14px] p-5">
-          <h2 className="text-base font-semibold mb-4 text-idf-blue">
+        <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'rgba(56,189,248,0.3)' }}>
+          <h2 className="text-lg font-semibold mb-4 text-idf-blue">
             {scenarioBreakdown.find(s => s.name === selectedScenario)?.nameHe} - פירוט
           </h2>
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-dark-bg rounded-lg p-4">
-              <h3 className="text-xs text-text-secondary mb-2">נקודות החלטה</h3>
+            <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--bg)' }}>
+              <h3 className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>נקודות החלטה</h3>
               <div className="space-y-2">
                 {['כניסה לאזור', 'זיהוי איום', 'החלטת ירי', 'בקשת גיבוי', 'פינוי'].map((point, i) => (
                   <div key={point} className="flex items-center gap-2">
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                    <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                       i < 3 ? 'bg-idf-green/20 text-idf-green' : i < 4 ? 'bg-idf-orange/20 text-idf-orange' : 'bg-idf-blue/20 text-idf-blue'
                     }`}>{i + 1}</div>
-                    <span className="text-xs text-text-primary">{point}</span>
-                    <span className="text-[10px] text-text-dim mr-auto">{(1 + Math.random() * 2).toFixed(1)}s</span>
+                    <span className="text-sm" style={{ color: 'var(--text-primary)' }}>{point}</span>
+                    <span className="text-xs font-mono mr-auto" style={{ color: 'var(--text-dim)' }}>{(1 + Math.random() * 2).toFixed(1)}s</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-dark-bg rounded-lg p-4">
-              <h3 className="text-xs text-text-secondary mb-2">ביומטרי לתרחיש</h3>
+            <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--bg)' }}>
+              <h3 className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>ביומטרי לתרחיש</h3>
               <div className="space-y-3">
                 {[
                   { label: 'HRV ממוצע', value: '62 ms', color: 'text-idf-blue' },
@@ -140,14 +151,14 @@ const ScenarioTab: React.FC = () => {
                   { label: 'זמן תגובה', value: '1.2s', color: 'text-idf-purple' },
                 ].map(m => (
                   <div key={m.label} className="flex justify-between">
-                    <span className="text-xs text-text-dim">{m.label}</span>
-                    <span className={`text-xs font-mono font-bold ${m.color}`}>{m.value}</span>
+                    <span className="text-sm" style={{ color: 'var(--text-dim)' }}>{m.label}</span>
+                    <span className={`text-sm font-mono font-bold ${m.color}`}>{m.value}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-dark-bg rounded-lg p-4">
-              <h3 className="text-xs text-text-secondary mb-2">נקודות שבירה</h3>
+            <div className="rounded-lg p-4" style={{ backgroundColor: 'var(--bg)' }}>
+              <h3 className="text-sm mb-2" style={{ color: 'var(--text-secondary)' }}>נקודות שבירה</h3>
               <div className="space-y-2">
                 {[
                   { time: '04:32', event: 'ירידת HRV מתחת ל-40' },
@@ -155,8 +166,8 @@ const ScenarioTab: React.FC = () => {
                   { time: '11:48', event: 'מעבר למיקוד מנהרה' },
                 ].map(bp => (
                   <div key={bp.time} className="flex items-start gap-2">
-                    <span className="text-[10px] font-mono text-idf-red bg-idf-red/10 px-1.5 py-0.5 rounded">{bp.time}</span>
-                    <span className="text-xs text-text-primary">{bp.event}</span>
+                    <span className="text-xs font-mono text-idf-red bg-idf-red/10 px-1.5 py-0.5 rounded">{bp.time}</span>
+                    <span className="text-sm" style={{ color: 'var(--text-primary)' }}>{bp.event}</span>
                   </div>
                 ))}
               </div>

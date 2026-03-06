@@ -32,7 +32,7 @@ const CadetProfile: React.FC = () => {
   return (
     <div>
       {/* Profile Header */}
-      <div className="bg-dark-surface border border-dark-border rounded-[14px] p-6 mb-6">
+      <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
             {/* Score Ring */}
@@ -46,7 +46,7 @@ const CadetProfile: React.FC = () => {
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xl font-bold font-mono" style={{ color: scoreColor }}>
+                <span className="text-2xl font-bold font-mono" style={{ color: scoreColor }}>
                   {cadet.resilienceScore}
                 </span>
               </div>
@@ -54,8 +54,8 @@ const CadetProfile: React.FC = () => {
 
             <div>
               <div className="flex items-center gap-3 mb-1">
-                <h1 className="text-xl font-bold">{cadet.id}</h1>
-                <span className="text-sm text-text-dim font-mono">{cadet.alias}</span>
+                <h1 className="text-2xl font-bold">{cadet.id}</h1>
+                <span className="text-base font-mono" style={{ color: 'var(--text-dim)' }}>{cadet.alias}</span>
                 <span className={`badge badge-${cadet.sector}`}>{sectorLabels[cadet.sector]}</span>
                 <span className={`badge ${
                   cadet.status === 'active' ? 'bg-idf-green/[0.13] text-idf-green border-idf-green/20' :
@@ -65,21 +65,21 @@ const CadetProfile: React.FC = () => {
                   {cadet.status === 'active' ? 'פעיל' : cadet.status === 'suspended' ? 'מושעה' : 'הושלם'}
                 </span>
               </div>
-              <div className="flex items-center gap-4 text-xs text-text-secondary">
-                <span>מפגשים: <strong className="font-mono text-text-primary">{cadet.totalSessions}</strong></span>
-                <span>מפגש אחרון: <strong className="font-mono text-text-primary">{cadet.lastSessionDate}</strong></span>
+              <div className="flex items-center gap-4 text-sm" style={{ color: 'var(--text-secondary)' }}>
+                <span>מפגשים: <strong className="font-mono" style={{ color: 'var(--text-primary)' }}>{cadet.totalSessions}</strong></span>
+                <span>מפגש אחרון: <strong className="font-mono" style={{ color: 'var(--text-primary)' }}>{cadet.lastSessionDate}</strong></span>
               </div>
             </div>
           </div>
 
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-4 py-2 text-xs font-medium hover:bg-idf-blue/20 transition-colors">
+            <button className="flex items-center gap-2 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-4 py-2 text-sm font-medium hover:bg-idf-blue/20 transition-colors">
               <RiPlayCircleLine /> התחל סימולציה
             </button>
-            <button className="flex items-center gap-2 bg-dark-bg border border-dark-border rounded-lg px-4 py-2 text-xs text-text-secondary hover:border-idf-blue/50 transition-colors">
+            <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm hover:border-idf-blue/50 transition-colors" style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>
               <RiDownloadLine /> ייצוא דוח
             </button>
-            <button className="flex items-center gap-2 bg-dark-bg border border-dark-border rounded-lg px-4 py-2 text-xs text-text-secondary hover:border-idf-blue/50 transition-colors">
+            <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm hover:border-idf-blue/50 transition-colors" style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>
               <RiEditLine /> הוספת הערה
             </button>
           </div>
@@ -87,7 +87,7 @@ const CadetProfile: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-dark-border mb-6">
+      <div className="flex gap-1 mb-6" style={{ borderBottom: '1px solid var(--border)' }}>
         {tabs.map(tab => (
           <button
             key={tab.id}
