@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   RiPlayCircleLine, RiFilter3Line, RiStarFill, RiStarLine,
   RiSettings4Line, RiEyeLine, RiPulseLine, RiGamepadLine,
-  RiGitBranchLine, RiSignalTowerLine, RiAddLine, RiCloseLine,
+  RiGitBranchLine, RiSignalTowerLine, RiAddLine,
   RiCheckLine, RiArrowLeftSLine, RiArrowRightSLine,
   RiSwordLine, RiShieldLine, RiMentalHealthLine,
   RiTeamLine, RiHeartPulseLine, RiBrainLine, RiBodyScanLine,
