@@ -57,14 +57,14 @@ const AdvancedAnalytics: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">אנליטיקס מתקדם</h1>
+        <h1 className="text-xl md:text-3xl font-bold">אנליטיקס מתקדם</h1>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6" style={{ borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: 'var(--border)' }}>
+      <div className="flex gap-1 mb-4 md:mb-6 overflow-x-auto" style={{ borderBottomWidth: 1, borderBottomStyle: 'solid', borderBottomColor: 'var(--border)' }}>
         {tabs.map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)}
-            className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}>{tab.label}</button>
+            className={`tab-btn whitespace-nowrap ${activeTab === tab.id ? 'active' : ''}`}>{tab.label}</button>
         ))}
       </div>
 
@@ -109,7 +109,7 @@ const AdvancedAnalytics: React.FC = () => {
                 </Scatter>
               </ScatterChart>
             </ResponsiveContainer>
-            <div className="grid grid-cols-4 gap-3 mt-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
               {[
                 { pos: 'ימין-למעלה', label: 'חוסן גבוה, התאוששות איטית', desc: 'דורש אימון התאוששות', color: 'text-idf-orange' },
                 { pos: 'ימין-למטה', label: 'חוסן גבוה, התאוששות מהירה', desc: 'מצוין', color: 'text-idf-green' },
@@ -323,7 +323,7 @@ const AdvancedAnalytics: React.FC = () => {
               <h2 className="text-lg font-semibold">מסלול קריסה - מטריגר לתוצאה</h2>
               <InfoTip text={"איך לקרוא: תרשים זרימה מטריגר לתוצאה. מראה כיצד גורם לחץ מוביל לירידה בביצועים.\n\nשלבים: טריגר > תגובה פיזיולוגית > השפעה קוגניטיבית > תוצאה.\n\nדוגמה: רעש > עלייה ב-GSR > ירידה בריכוז > שגיאות בהחלטות.\n\nזיהוי המסלול מאפשר התערבות מוקדמת בשלב הנכון."} />
             </div>
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold mb-3 text-center" style={{ color: 'var(--text-secondary)' }}>טריגר</h3>
                 {['רעש קשר', 'עומס מידע', 'הפתעה', 'לחץ זמנים'].map(t => (
@@ -372,7 +372,7 @@ const AdvancedAnalytics: React.FC = () => {
       {/* Predictive Analytics */}
       {activeTab === 'predictive' && (
         <div className="space-y-6">
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="stat-card">
               <h3 className="text-sm mb-3" style={{ color: 'var(--text-secondary)' }}>צוערים צפויים להגיע ליעד החודש</h3>
               <div className="space-y-2">

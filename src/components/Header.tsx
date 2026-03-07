@@ -13,34 +13,34 @@ const Header: React.FC = () => {
   const time = now.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' });
 
   return (
-    <header className="h-16 border-b flex items-center justify-between px-6 sticky top-0 z-40" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
-      <div className="flex items-center gap-4">
+    <header className="h-14 md:h-16 border-b flex items-center justify-between px-3 md:px-6 sticky top-0 z-40" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
+      <div className="flex items-center gap-2 md:gap-4 mr-12 md:mr-0">
         <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-idf-blue to-idf-green flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-gradient-to-br from-idf-blue to-idf-green flex items-center justify-center text-white font-bold text-xs md:text-sm">
             RC
           </div>
-          <span className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>IDF Resilience Center</span>
+          <span className="text-sm md:text-base font-bold hidden sm:inline" style={{ color: 'var(--text-primary)' }}>IDF Resilience Center</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-5">
-        <div className="relative">
+      <div className="flex items-center gap-2 md:gap-5">
+        <div className="relative hidden md:block">
           <RiSearchLine className="absolute right-3 top-1/2 -translate-y-1/2" style={{ color: 'var(--text-dim)' }} />
           <input
             type="text"
             placeholder="חיפוש צוער..."
-            className="border rounded-lg pr-9 pl-4 py-2 text-sm font-medium focus:outline-none focus:border-idf-blue/50 w-52"
+            className="border rounded-lg pr-9 pl-4 py-2 text-sm font-medium focus:outline-none focus:border-idf-blue/50 w-40 lg:w-52"
             style={{ backgroundColor: 'var(--input-bg)', borderColor: 'var(--border)', color: 'var(--text-primary)' }}
           />
         </div>
 
-        <div className="flex items-center gap-1.5 border rounded-lg px-3 py-2 cursor-pointer" style={{ backgroundColor: 'var(--input-bg)', borderColor: 'var(--border)' }}>
+        <div className="hidden lg:flex items-center gap-1.5 border rounded-lg px-3 py-2 cursor-pointer" style={{ backgroundColor: 'var(--input-bg)', borderColor: 'var(--border)' }}>
           <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>יחידה:</span>
           <span className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>פלוגה א'</span>
           <RiArrowDownSLine style={{ color: 'var(--text-dim)' }} />
         </div>
 
-        <span className="text-sm" style={{ color: 'var(--text-dim)' }}>{hebrewDate} | {time}</span>
+        <span className="text-xs md:text-sm hidden sm:inline" style={{ color: 'var(--text-dim)' }}>{hebrewDate} | {time}</span>
 
         {/* Theme Toggle */}
         <button
@@ -66,7 +66,7 @@ const Header: React.FC = () => {
           </button>
 
           {showAlerts && (
-            <div className="absolute left-0 top-14 w-96 border rounded-xl overflow-hidden z-50" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)', boxShadow: '0 8px 32px var(--shadow-color)' }}>
+            <div className="absolute left-0 top-14 w-[calc(100vw-24px)] md:w-96 max-w-96 border rounded-xl overflow-hidden z-50" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)', boxShadow: '0 8px 32px var(--shadow-color)' }}>
               <div className="p-4 border-b" style={{ borderColor: 'var(--border)' }}>
                 <h3 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>התראות</h3>
               </div>
@@ -93,7 +93,7 @@ const Header: React.FC = () => {
           )}
         </div>
 
-        <div className="flex items-center gap-2 pr-4 border-r" style={{ borderColor: 'var(--border)' }}>
+        <div className="hidden md:flex items-center gap-2 pr-4 border-r" style={{ borderColor: 'var(--border)' }}>
           <div className="text-left">
             <p className="text-sm font-semibold" style={{ color: 'var(--text-primary)' }}>סא"ל דוד לוי</p>
             <p className="text-xs" style={{ color: 'var(--text-dim)' }}>קצין מנטלי</p>

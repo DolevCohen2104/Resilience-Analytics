@@ -54,8 +54,8 @@ const Dashboard: React.FC = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>Command Dashboard - לוח מפקד</h1>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 md:mb-6">
+        <h1 className="text-xl md:text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>Command Dashboard - לוח מפקד</h1>
         <button
           onClick={exportDashboard}
           className="flex items-center gap-2 text-sm font-medium rounded-lg px-3 py-2 transition-colors hover:border-idf-blue/50"
@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* KPI Strip */}
-      <div className="grid grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-4 md:mb-6">
         <StatCard icon={RiUserLine} label="צוערים פעילים" value={cadets.length} trend="up" trendValue="+12% מהחודש הקודם" />
         <StatCard icon={RiShieldLine} label="ציון חוסן משוקלל" value={avgResilience} trend="up" trendValue="+8.3%" />
         <StatCard icon={RiTimeLine} label="זמן התאוששות ממוצע" value={`${avgRecovery}s`} trend="down" trendValue="-15%" trendGood="down" />
@@ -76,9 +76,9 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6">
         {/* Left Column - 3/5 */}
-        <div className="col-span-3 space-y-6">
+        <div className="lg:col-span-3 space-y-4 md:space-y-6">
           {/* Trend Chart */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-4">
@@ -171,7 +171,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* Right Column - 2/5 */}
-        <div className="col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 md:space-y-6">
           {/* Radar Chart */}
           <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2 mb-2">

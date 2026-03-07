@@ -231,8 +231,8 @@ const SimulationManagement: React.FC = () => {
         </div>
       )}
 
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">ניהול סימולציות</h1>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 md:mb-6">
+        <h1 className="text-xl md:text-3xl font-bold">ניהול סימולציות</h1>
         <button
           onClick={() => setActiveSection('create')}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-base font-medium bg-idf-blue text-white hover:bg-idf-blue/90 transition-colors shadow-lg shadow-idf-blue/20"
@@ -242,12 +242,12 @@ const SimulationManagement: React.FC = () => {
       </div>
 
       {/* Section Tabs */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-4 md:mb-6 overflow-x-auto">
         {sectionTabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveSection(tab.id as any)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-base font-medium transition-all ${
+            className={`flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-xl text-sm md:text-base font-medium transition-all whitespace-nowrap ${
               activeSection === tab.id
                 ? 'bg-idf-blue/10 text-idf-blue border border-idf-blue/20'
                 : 'border'
@@ -312,7 +312,7 @@ const SimulationManagement: React.FC = () => {
           </div>
 
           {/* Stats Summary */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4 md:mb-6">
             {[
               { label: 'סה"כ תרחישים', value: scenarios.length, color: '#38BDF8' },
               { label: 'פעילים', value: scenarios.filter(s => s.status === 'active').length, color: '#00E5A0' },
@@ -327,7 +327,7 @@ const SimulationManagement: React.FC = () => {
           </div>
 
           {/* Scenario Grid */}
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             {filteredScenarios.map(scenario => {
               const st = statusLabels[scenario.status];
               return (
@@ -1032,9 +1032,9 @@ const SimulationManagement: React.FC = () => {
 
       {/* ===== LIVE MONITORING ===== */}
       {activeSection === 'live' && (
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
           {/* Simulation Viewport */}
-          <div className="col-span-3 rounded-[14px] p-4" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
+          <div className="lg:col-span-3 rounded-[14px] p-4" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <h2 className="text-base font-semibold">שידור חי - היתקלות בשטח בנוי</h2>
@@ -1055,7 +1055,7 @@ const SimulationManagement: React.FC = () => {
           </div>
 
           {/* Live Bio-Metrics */}
-          <div className="col-span-2 space-y-3">
+          <div className="lg:col-span-2 space-y-3">
             <div className="rounded-[14px] p-4" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-semibold">ביומטרי בזמן אמת</h3>

@@ -133,10 +133,10 @@ const SimulationSummary: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Header */}
-      <div className="rounded-[14px] p-8 mb-6 text-center" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
-        <h1 className="text-3xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>סיכום תפקוד בסימולציה תחת לחץ</h1>
-        <p className="text-lg mb-5" style={{ color: 'var(--text-secondary)' }}>המיקוד אינו רק בהצלחת המשימה, אלא באיך שהמשימה בוצעה</p>
-        <div className="flex items-center justify-center gap-8 text-base" style={{ color: 'var(--text-dim)' }}>
+      <div className="rounded-[14px] p-4 md:p-8 mb-4 md:mb-6 text-center" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
+        <h1 className="text-xl md:text-3xl font-bold mb-2 md:mb-3" style={{ color: 'var(--text-primary)' }}>סיכום תפקוד בסימולציה תחת לחץ</h1>
+        <p className="text-sm md:text-lg mb-3 md:mb-5" style={{ color: 'var(--text-secondary)' }}>המיקוד אינו רק בהצלחת המשימה, אלא באיך שהמשימה בוצעה</p>
+        <div className="flex flex-wrap items-center justify-center gap-3 md:gap-8 text-sm md:text-base" style={{ color: 'var(--text-dim)' }}>
           <span>תרחיש: <strong style={{ color: 'var(--text-primary)' }}>היתקלות בשטח בנוי</strong></span>
           <span>תאריך: <strong style={{ color: 'var(--text-primary)' }}>2026-03-06</strong></span>
           <span>משך: <strong style={{ color: 'var(--text-primary)' }}>18 דקות</strong></span>
@@ -155,8 +155,8 @@ const SimulationSummary: React.FC = () => {
           שלושת כושרי החוסן - כל קודקוד מייצג יכולת מרכזית
         </p>
 
-        <div className="flex justify-center mb-6">
-          <svg width="500" height="460" viewBox="0 0 500 460">
+        <div className="flex justify-center mb-6 overflow-x-auto">
+          <svg className="w-full max-w-[500px]" viewBox="0 0 500 460">
             {gridTriangles.map((pts, i) => (
               <polygon key={i} points={pts} fill="none" stroke="var(--border)" strokeWidth={i === 0 ? 1.5 : 0.8} strokeDasharray={i === 0 ? 'none' : '4 4'} />
             ))}
@@ -188,7 +188,7 @@ const SimulationSummary: React.FC = () => {
         </div>
 
         {/* Capability Detail Cards */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {capabilities.map(cap => {
             const diff = cap.score - cap.prev;
             return (
@@ -280,7 +280,7 @@ const SimulationSummary: React.FC = () => {
         {/* Biometric Comparison */}
         <div className="mt-6 pt-5" style={{ borderTop: '1px solid var(--border)' }}>
           <h3 className="text-base font-bold mb-4" style={{ color: 'var(--text-primary)' }}>השוואת מדדים ביומטריים</h3>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
             {comparisonMetrics.map(m => {
               const improved = m.label === 'זמן תגובה' ? m.current < m.baseline : m.current > m.baseline;
               const diffVal = m.label === 'זמן תגובה'

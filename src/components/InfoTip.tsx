@@ -35,7 +35,7 @@ const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
       </button>
       {open && (
         <div
-          className="absolute z-50 w-96 p-4 rounded-xl shadow-lg text-right max-h-80 overflow-y-auto"
+          className="absolute z-50 w-72 md:w-96 p-3 md:p-4 rounded-xl shadow-lg text-right max-h-80 overflow-y-auto"
           style={{
             backgroundColor: 'var(--surface)',
             border: '1px solid var(--border)',

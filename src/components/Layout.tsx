@@ -11,9 +11,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg)' }}>
       <Sidebar />
-      <div className="mr-[72px]">
+      <div className="mr-0 md:mr-[72px]">
         <Header />
-        <main className="p-6">
+        <main className="p-3 pt-16 md:p-6 md:pt-6">
           {children}
         </main>
       </div>

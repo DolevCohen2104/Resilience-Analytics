@@ -34,12 +34,12 @@ const CadetProfile: React.FC = () => {
   return (
     <div>
       {/* Profile Header */}
-      <div className="rounded-[14px] p-6 mb-6" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
+      <div className="rounded-[14px] p-4 md:p-6 mb-4 md:mb-6" style={{ backgroundColor: 'var(--surface)', border: '1px solid var(--border)' }}>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="flex items-center gap-4 md:gap-6">
             {/* Score Ring */}
-            <div className="relative w-20 h-20">
-              <svg className="w-20 h-20 -rotate-90" viewBox="0 0 80 80">
+            <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
+              <svg className="w-16 h-16 md:w-20 md:h-20 -rotate-90" viewBox="0 0 80 80">
                 <circle cx="40" cy="40" r="35" fill="none" stroke="#1E293B" strokeWidth="4" />
                 <circle
                   cx="40" cy="40" r="35" fill="none"
@@ -55,8 +55,8 @@ const CadetProfile: React.FC = () => {
             </div>
 
             <div>
-              <div className="flex items-center gap-3 mb-1">
-                <h1 className="text-2xl font-bold">{cadet.id}</h1>
+              <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-1">
+                <h1 className="text-lg md:text-2xl font-bold">{cadet.id}</h1>
                 <InfoTip text={"איך לקרוא: הטבעת הציון מציגה את ציון החוסן הכולל (0-100). הצבע משתנה לפי הציון:\n\nירוק (70+) = חוסן גבוה, כתום (50-69) = בינוני, אדום (<50) = נמוך.\n\nדוגמה: טבעת ירוקה עם 78 = צוער בעל חוסן גבוה.\n\nהתגים מציגים: זרוע, סטטוס, רמת סיכון. מגמה עם חץ = כיוון השינוי."} />
                 <span className="text-base font-mono" style={{ color: 'var(--text-dim)' }}>{cadet.alias}</span>
                 <span className={`badge badge-${cadet.sector}`}>{sectorLabels[cadet.sector]}</span>
@@ -75,8 +75,8 @@ const CadetProfile: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex gap-2">
-            <button className="flex items-center gap-2 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-4 py-2 text-sm font-medium hover:bg-idf-blue/20 transition-colors">
+          <div className="flex flex-wrap gap-2">
+            <button className="flex items-center gap-2 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-3 md:px-4 py-2 text-sm font-medium hover:bg-idf-blue/20 transition-colors">
               <RiPlayCircleLine /> התחל סימולציה
             </button>
             <button
@@ -92,12 +92,12 @@ const CadetProfile: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6" style={{ borderBottom: '1px solid var(--border)' }}>
+      <div className="flex gap-1 mb-4 md:mb-6 overflow-x-auto" style={{ borderBottom: '1px solid var(--border)' }}>
         {tabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
+            className={`tab-btn whitespace-nowrap ${activeTab === tab.id ? 'active' : ''}`}
           >
             {tab.label}
           </button>

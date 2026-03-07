@@ -19,7 +19,7 @@ const SystemSettings: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">הגדרות מערכת</h1>
+        <h1 className="text-xl md:text-3xl font-bold">הגדרות מערכת</h1>
       </div>
 
       {/* Tabs */}
@@ -33,7 +33,7 @@ const SystemSettings: React.FC = () => {
       {/* Sensor Calibration */}
       {activeTab === 'sensors' && (
         <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {sensorStatus.map(sensor => (
               <div key={sensor.name} className={`stat-card ${sensor.status === 'malfunction' ? 'border-idf-red/30' : ''}`}>
                 <div className="flex items-center justify-between mb-4">
@@ -93,6 +93,7 @@ const SystemSettings: React.FC = () => {
             <h2 className="text-lg font-semibold">הגדרת ספי התראות</h2>
             <InfoTip text={"איך לקרוא: הגדרת ערכי סף שמעליהם/מתחתיהם תופעל התראה אוטומטית.\n\nכל שורה = מדד (HRV, GSR, ציון חוסן). ערך הסף קובע מתי נשלחת התראה.\n\nדוגמה: סף HRV = 30ms - כאשר HRV של צוער יורד מתחת ל-30, תישלח התראה למפקד.\n\nסף נמוך מדי = התראות רבות מדי (רעש). סף גבוה מדי = החמצת מקרים חשובים."} />
           </div>
+          <div className="overflow-x-auto">
           <table className="w-full text-right">
             <thead>
               <tr style={{ backgroundColor: 'var(--hover)' }}>
@@ -140,6 +141,7 @@ const SystemSettings: React.FC = () => {
               ))}
             </tbody>
           </table>
+          </div>
           <div className="flex justify-end mt-4">
             <button className="bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-6 py-2 text-base font-medium hover:bg-idf-blue/20 transition-colors">
               שמירת שינויים
@@ -242,7 +244,7 @@ const SystemSettings: React.FC = () => {
                 </div>
                 <span className="badge bg-idf-green/[0.13] text-idf-green border-idf-green/20">מחובר</span>
               </div>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {integration.fields.map(f => (
                   <div key={f.label} className="rounded-lg p-3" style={{ backgroundColor: 'var(--bg)' }}>
                     <p className="text-xs" style={{ color: 'var(--text-dim)' }}>{f.label}</p>

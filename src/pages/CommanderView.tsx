@@ -51,15 +51,15 @@ const CommanderView: React.FC = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">תצוגת מפקד</h1>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 md:mb-6">
+        <h1 className="text-xl md:text-3xl font-bold">תצוגת מפקד</h1>
         <button onClick={exportCommanderReport} className="flex items-center gap-2 text-sm rounded-lg px-3 py-2 border hover:border-idf-blue/50 transition-colors" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
           <RiDownloadLine /> הפקת דוח תקופתי
         </button>
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 mb-4 md:mb-6">
         <StatCard icon={RiShieldLine} label="ציון חוסן משוקלל" value={avgResilience} trend="up" trendValue="+8%" />
         <StatCard icon={RiUserLine} label='צוערים באזור ירוק (>70)' value={`${greenZone}/${cadets.length}`} trend="up" trendValue={`${Math.round(greenZone/cadets.length*100)}%`} />
         <StatCard icon={RiAlertLine} label='צוערים באזור אדום (<40)' value={redZone} trend={redZone > 0 ? 'up' : 'stable'} trendValue="" trendGood="down" />
@@ -67,7 +67,7 @@ const CommanderView: React.FC = () => {
         <StatCard icon={RiCalendarLine} label="ממוצע מפגשים לצוער" value={avgSessions} trend="up" trendValue="" />
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
         {/* Resilience Distribution */}
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-4">

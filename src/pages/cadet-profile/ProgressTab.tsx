@@ -63,7 +63,7 @@ const ProgressTab: React.FC<Props> = ({ cadet }) => {
       </div>
 
       {/* Sector Improvement Cards */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-[14px] p-5" style={{ backgroundColor: 'var(--surface)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)' }}>
           <div className="flex items-center gap-2 mb-4">
             <span className="badge badge-combat">קרבי</span>

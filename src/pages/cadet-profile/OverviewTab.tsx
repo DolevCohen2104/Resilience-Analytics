@@ -33,7 +33,7 @@ const OverviewTab: React.FC<Props> = ({ cadet }) => {
   return (
     <div className="space-y-6">
       {/* Bio-Metric Cards */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         {bioCards.map((card) => {
           const current = typeof card.value === 'string' ? parseFloat(card.value) : card.value;
           const diff = ((current - card.baseline) / card.baseline * 100).toFixed(1);

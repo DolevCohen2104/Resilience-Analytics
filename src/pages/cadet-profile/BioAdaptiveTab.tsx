@@ -55,7 +55,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
         </ResponsiveContainer>
 
         <h3 className="text-base font-medium mt-6 mb-3" style={{ color: 'var(--text-secondary)' }}>HRV לפי שלב תרחיש</h3>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
           {hrvPhaseData.map(p => (
             <div key={p.phase} className="text-center p-3 rounded-lg" style={{ backgroundColor: 'var(--bg)' }}>
               <div className="text-xs mb-1" style={{ color: 'var(--text-dim)' }}>{p.phase}</div>
@@ -107,7 +107,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
           <h2 className="text-lg font-semibold">מעקב עיניים</h2>
           <InfoTip text={"איך לקרוא: מציג את דפוסי המבט - ריכוז, קשב וסריקת שדה.\n\nאחוז ריכוז: מעל 70% = קשב גבוה, מתחת ל-40% = פיזור.\n\nדוגמה: ריכוז 82% באזור המטרה = עיבוד מידע ממוקד. 35% = הצוער מתקשה להתרכז.\n\nדפוס סריקה סדור = חשיבה מאורגנת. מבט קפצני = חרדה או בלבול."} />
         </div>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div>
             <h3 className="text-base mb-3" style={{ color: 'var(--text-secondary)' }}>התפלגות מבט</h3>
             <div className="space-y-3">
@@ -153,7 +153,7 @@ const BioAdaptiveTab: React.FC<Props> = ({ cadet }) => {
           <h2 className="text-lg font-semibold">זמן תגובה קוגניטיבי</h2>
           <InfoTip text={"איך לקרוא: ציר X = מפגש, ציר Y = זמן תגובה (ms). ערך נמוך = מהיר יותר = טוב יותר.\n\nטווח תקין: 200-500ms. מעל 800ms = איטי מהרגיל.\n\nדוגמה: זמן תגובה ירד מ-450ms ל-320ms לאורך 5 מפגשים = שיפור של 29%.\n\nמגמה יורדת = שיפור בקבלת החלטות תחת לחץ."} />
         </div>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div>
             <h3 className="text-base mb-3" style={{ color: 'var(--text-secondary)' }}>זמן תגובה לפי עומס</h3>
             <ResponsiveContainer width="100%" height={220}>
