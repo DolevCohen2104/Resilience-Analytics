@@ -13,6 +13,7 @@ import RadarChart from '../components/RadarChart';
 import RadarBreakdown from '../components/RadarBreakdown';
 import { cadets, sectorLabels, riskLabels, componentLabels } from '../data/mockData';
 import { useChartTheme } from '../useChartTheme';
+import { exportCommanderReport, exportCommanderExcel } from '../utils/exportUtils';
 
 const CommanderView: React.FC = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const CommanderView: React.FC = () => {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold">תצוגת מפקד</h1>
-        <button className="flex items-center gap-2 text-sm rounded-lg px-3 py-2 border hover:border-idf-blue/50 transition-colors" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
+        <button onClick={exportCommanderReport} className="flex items-center gap-2 text-sm rounded-lg px-3 py-2 border hover:border-idf-blue/50 transition-colors" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--surface)', borderColor: 'var(--border)' }}>
           <RiDownloadLine /> הפקת דוח תקופתי
         </button>
       </div>
@@ -116,7 +117,7 @@ const CommanderView: React.FC = () => {
                 style={{ backgroundColor: 'var(--bg)', borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--border)', color: 'var(--text-primary)' }}
               />
             </div>
-            <button className="flex items-center gap-1 text-sm rounded-lg px-3 py-1.5 border hover:border-idf-blue/50" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--bg)', borderColor: 'var(--border)' }}>
+            <button onClick={exportCommanderExcel} className="flex items-center gap-1 text-sm rounded-lg px-3 py-1.5 border hover:border-idf-blue/50" style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--bg)', borderColor: 'var(--border)' }}>
               <RiDownloadLine className="text-base" /> Excel
             </button>
           </div>

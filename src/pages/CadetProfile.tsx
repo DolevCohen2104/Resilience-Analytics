@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { RiPlayCircleLine, RiDownloadLine, RiEditLine } from 'react-icons/ri';
 import { cadets, sectorLabels } from '../data/mockData';
+import { exportCadetReport } from '../utils/exportUtils';
 import InfoTip from '../components/InfoTip';
 import OverviewTab from './cadet-profile/OverviewTab';
 import BioAdaptiveTab from './cadet-profile/BioAdaptiveTab';
@@ -78,7 +79,9 @@ const CadetProfile: React.FC = () => {
             <button className="flex items-center gap-2 bg-idf-blue/10 text-idf-blue border border-idf-blue/20 rounded-lg px-4 py-2 text-sm font-medium hover:bg-idf-blue/20 transition-colors">
               <RiPlayCircleLine /> התחל סימולציה
             </button>
-            <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm hover:border-idf-blue/50 transition-colors" style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>
+            <button
+              onClick={() => exportCadetReport(cadet)}
+              className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm hover:border-idf-blue/50 transition-colors" style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>
               <RiDownloadLine /> ייצוא דוח
             </button>
             <button className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm hover:border-idf-blue/50 transition-colors" style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>

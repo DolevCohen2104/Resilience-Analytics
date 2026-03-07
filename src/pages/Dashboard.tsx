@@ -16,6 +16,7 @@ import { useChartTheme } from '../useChartTheme';
 import {
   cadets, sessionTrendData, activityFeed, sectorLabels, riskLabels, componentLabels
 } from '../data/mockData';
+import { exportDashboard } from '../utils/exportUtils';
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -56,7 +57,8 @@ const Dashboard: React.FC = () => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>Command Dashboard - לוח מפקד</h1>
         <button
-          className="flex items-center gap-2 text-sm font-medium rounded-lg px-3 py-2 transition-colors"
+          onClick={exportDashboard}
+          className="flex items-center gap-2 text-sm font-medium rounded-lg px-3 py-2 transition-colors hover:border-idf-blue/50"
           style={{ color: 'var(--text-secondary)', backgroundColor: 'var(--surface)', borderWidth: '1px', borderStyle: 'solid', borderColor: 'var(--border)' }}
         >
           <RiDownloadLine /> Export
