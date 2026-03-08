@@ -8,6 +8,8 @@ interface InfoTipProps {
 const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [popupStyle, setPopupStyle] = useState<React.CSSProperties>({});
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -19,9 +21,33 @@ const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [open]);
 
+  useEffect(() => {
+    if (open && btnRef.current) {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        setPopupStyle({
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          right: 'auto',
+          marginTop: 0,
+        });
+      } else {
+        setPopupStyle({
+          position: 'absolute',
+          top: '100%',
+          marginTop: '8px',
+          right: 0,
+        });
+      }
+    }
+  }, [open]);
+
   return (
     <div className="relative inline-flex" ref={ref}>
       <button
+        ref={btnRef}
         onClick={() => setOpen(!open)}
         className="w-6 h-6 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0"
         style={{
@@ -34,20 +60,21 @@ const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
         <RiQuestionLine className="text-sm" />
       </button>
       {open && (
-        <div
-          className="absolute z-50 w-72 md:w-96 p-3 md:p-4 rounded-xl shadow-lg text-right max-h-80 overflow-y-auto"
-          style={{
-            backgroundColor: 'var(--surface)',
-            border: '1px solid var(--border)',
-            boxShadow: '0 8px 32px var(--shadow-color)',
-            top: '100%',
-            marginTop: '8px',
-            right: 0,
-          }}
-        >
-          <div className="absolute -top-1.5 right-2 w-3 h-3 rotate-45" style={{ backgroundColor: 'var(--surface)', borderTop: '1px solid var(--border)', borderRight: '1px solid var(--border)', borderLeft: 'none', borderBottom: 'none' }} />
-          <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--text-secondary)' }}>{text}</p>
-        </div>
+        <>
+          <div className="fixed inset-0 z-40 md:hidden" />
+          <div
+            className="z-50 w-[calc(100vw-32px)] md:w-96 p-3 md:p-4 rounded-xl shadow-lg text-right max-h-[70vh] overflow-y-auto"
+            style={{
+              backgroundColor: 'var(--surface)',
+              border: '1px solid var(--border)',
+              boxShadow: '0 8px 32px var(--shadow-color)',
+              ...popupStyle,
+            }}
+          >
+            <div className="hidden md:block absolute -top-1.5 right-2 w-3 h-3 rotate-45" style={{ backgroundColor: 'var(--surface)', borderTop: '1px solid var(--border)', borderRight: '1px solid var(--border)', borderLeft: 'none', borderBottom: 'none' }} />
+            <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--text-secondary)' }}>{text}</p>
+          </div>
+        </>
       )}
     </div>
   );
