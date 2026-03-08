@@ -61,7 +61,7 @@ const InfoTip: React.FC<InfoTipProps> = ({ text }) => {
       </button>
       {open && (
         <>
-          <div className="fixed inset-0 z-40 md:hidden" />
+          <div className="fixed inset-0 z-40 md:hidden" onClick={() => setOpen(false)} />
           <div
             className="z-50 w-[calc(100vw-32px)] md:w-96 p-3 md:p-4 rounded-xl shadow-lg text-right max-h-[70vh] overflow-y-auto"
             style={{
